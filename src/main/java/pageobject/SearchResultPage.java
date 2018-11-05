@@ -13,10 +13,6 @@ public class SearchResultPage extends BasePage {
 
     public int getSearchResults() {
         return searchResults.size();
-    }
-
-    public void checkSearchResults() {
-        Assert.assertTrue("No results were found", searchResults.getSearchResults() != 0);
 
     }
 }
