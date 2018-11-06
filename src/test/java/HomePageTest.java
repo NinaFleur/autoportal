@@ -1,10 +1,10 @@
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 import pageobject.HomePage;
 import pageobject.SearchResultPage;
 
@@ -12,15 +12,11 @@ import java.util.concurrent.TimeUnit;
 
 public class HomePageTest {
 
-    WebDriver driver = new ChromeDriver();
-    private HomePage homePage;
-    private SearchResultPage searchResults;
+    private WebDriver driver;
 
-
-    @Before
+    @BeforeMethod
     public void setUp() {
-        WebDriver driver;
-        System.setProperty("webdriver.chrome.driver", "/Users/nina/Automation/projects/autoportal/src/main/resources/chromedriver");
+        System.setProperty("webdriver.chrome.driver", "/Users/mac/Automation/projects/autoportal/src/main/resources/chromedriver");
         driver = new ChromeDriver();
         PageFactory.initElements(driver, this);
         driver.manage().window().fullscreen();
@@ -29,18 +25,14 @@ public class HomePageTest {
     }
 
     @Test
-    public void searchTest() {
-        homePage = new HomePage();
-        homePage
+    public void searchTest(){
+        new HomePage(driver)
                 .searchForQuery("Tata");
-
-        searchResults = new SearchResultPage();
-        searchResults.getSearchResults();
-        Assert.assertTrue("No results were found", searchResults.getSearchResults() != 0);
-
+        new SearchResultPage(driver)
+                .verifyResults();
     }
 
-    @After
+    @AfterMethod
     public void closeDriver() {
         driver.quit();
     }
