@@ -30,6 +30,12 @@ public class HomePageTest {
                 .compareHeaderLinks();
     }
 
+    @Test
+    public void verifyCarFormTitle(){
+        new HomePage(driver)
+                .verifyTitle();
+    }
+
 
     @Test(priority = 1)
     public void searchTest() {

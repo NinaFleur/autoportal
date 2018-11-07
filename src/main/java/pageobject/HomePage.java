@@ -12,6 +12,7 @@ import java.util.List;
 
 import static org.testng.Assert.assertEquals;
 
+
 public class HomePage {
 
 
@@ -23,9 +24,22 @@ public class HomePage {
     @FindBy(css = ".ui-autocomplete-input")
     private WebElement searchInput;
 
+    @FindBy(css = ".frm_srch-in p")
+    private WebElement titleFindCarForm;
+
     public HomePage(WebDriver driver) {
         PageFactory.initElements(driver, this);
     }
+
+    private String getCarFormTitle() {
+        return titleFindCarForm.getText();
+    }
+
+    public HomePage verifyTitle() {
+        assertEquals(
+        return this;
+    }
+
 
     private List<String> getHeaderLinks() {
         List<String> headerLinksText = new ArrayList<>();
