@@ -24,8 +24,15 @@ public class HomePageTest {
         driver.get("https://autoportal.com/");
     }
 
-    @Test
-    public void searchTest(){
+    @Test(priority = 0)
+    public void verifyHeaderLinks() {
+        new HomePage(driver)
+                .compareHeaderLinks();
+    }
+
+
+    @Test(priority = 1)
+    public void searchTest() {
         new HomePage(driver)
                 .searchForQuery("Tata");
         new SearchResultPage(driver)
