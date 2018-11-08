@@ -27,6 +27,8 @@ public class HomePage {
     @FindBy(css = ".frm_srch-in p")
     private WebElement titleFindCarForm;
 
+    public String correctTitleFindCarForm = "Find Your Dream Car!";
+
     public HomePage(WebDriver driver) {
         PageFactory.initElements(driver, this);
     }
@@ -36,7 +38,7 @@ public class HomePage {
     }
 
     public HomePage verifyTitle() {
-        assertEquals(
+        assertEquals(getCarFormTitle(), correctTitleFindCarForm, "The title in the Car Find form isn't correct");
         return this;
     }
 
@@ -57,7 +59,7 @@ public class HomePage {
     }
 
     public HomePage compareHeaderLinks() {
-        assertEquals(correctHeaderLinks, getHeaderLinks(), "Header Links are correct");
+        assertEquals(correctHeaderLinks, getHeaderLinks(), "Header Links are incorrect");
         return this;
     }
 

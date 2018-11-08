@@ -16,7 +16,7 @@ public class HomePageTest {
 
     @BeforeMethod
     public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "/Users/mac/Automation/projects/autoportal/src/main/resources/chromedriver");
+        System.setProperty("webdriver.chrome.driver", "/Users/nina/Automation/projects/autoportal/src/main/resources/chromedriver");
         driver = new ChromeDriver();
         PageFactory.initElements(driver, this);
         driver.manage().window().fullscreen();
@@ -37,7 +37,7 @@ public class HomePageTest {
     }
 
 
-    @Test(priority = 1)
+    @Test
     public void searchTest() {
         new HomePage(driver)
                 .searchForQuery("Tata");
