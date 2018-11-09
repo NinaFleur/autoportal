@@ -27,6 +27,9 @@ public class HomePage {
     @FindBy(css = ".frm_srch-in p")
     private WebElement titleFindCarForm;
 
+    @FindBy(css = "a.red_but")
+    private WebElement buttonViewDeals;
+
     public String correctTitleFindCarForm = "Find Your Dream Car!";
 
     public HomePage(WebDriver driver) {
@@ -40,6 +43,10 @@ public class HomePage {
     public HomePage verifyTitle() {
         assertEquals(getCarFormTitle(), correctTitleFindCarForm, "The title in the Car Find form isn't correct");
         return this;
+    }
+
+    public void clickButtonViewDeals(){
+        buttonViewDeals.click();
     }
 
 
