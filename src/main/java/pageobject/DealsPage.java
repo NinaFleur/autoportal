@@ -1,0 +1,20 @@
+package pageobject;
+
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
+import java.util.List;
+
+import static org.testng.Assert.assertTrue;
+
+public class DealsPage extends BasePage {
+
+    @FindBy(css = ".m_b-10 .red_but")
+    List<WebElement> btnRequestCallBack;
+
+    public DealsPage checkBtnRequestCallBack() {
+        LOGGER.info("check the \"Request Call Back\" buttons");
+        assertTrue(btnRequestCallBack.get(0).isDisplayed(), "Request CallBack buttons are not displayed");
+        return this;
+    }
+}
