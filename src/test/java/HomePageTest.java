@@ -1,79 +1,60 @@
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pageobject.DealsPage;
 import pageobject.HomePage;
 import pageobject.SearchResultPage;
-import pageobject.DealsPage;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
-public class HomePageTest {
+public class HomePageTest extends BaseTest {
+    private HomePage homePage;
 
-    private WebDriver driver;
-
+    @Override
     @BeforeMethod
-    public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "/Users/nina/Automation/projects/autoportal/src/main/resources/chromedriver");
-        driver = new ChromeDriver();
-        PageFactory.initElements(driver, this);
-        driver.manage().window().fullscreen();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.get("https://autoportal.com/");
+    public void beforeMethodInit() {
+        super.beforeMethodInit();
+        homePage = new HomePage();
+        homePage.navigate();
     }
 
     @Test
     public void verifyHeaderLinks() {
-        new HomePage(driver)
-                .compareHeaderLinks();
-        List links = driver.findElements(By.tagName("li"));
-        System.out.println(links.size());
+        List<String> correctHeaderLinks = Arrays.asList("New Cars", "New Bikes", "Used Cars", "News & Articles", "More");
 
+        homePage
+                .verifyHeaderLinks(correctHeaderLinks);
     }
 
     @Test
-    public void openViewDealsTab(){
-        new HomePage(driver)
-                .clickButtonViewDeals();
-        String urlDealPage = driver.getCurrentUrl();
-        System.out.println(urlDealPage);
-//       ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
-//       driver.switchTo().window(tabs.get(0));
+    public void openViewDealsTab() {
+        homePage
+                .clickButtonViewDeals()
+                .checkBtnRequestCallBack();
     }
-
 
     @Test
-    public void verifyCarFormTitle(){
-        new HomePage(driver)
-                .verifyTitle();
-        String title = driver.getTitle();
-        System.out.println(title);
-    }
+    public void verifyCarFormTitle() {
+        String correctTitleFindCarForm = "Find Your Dream Car!";
 
+        homePage
+                .verifyTitle(correctTitleFindCarForm);
+    }
 
     @Test
     public void searchTest() {
-        new HomePage(driver)
+        homePage
                 .searchForQuery("Tata");
-        new SearchResultPage(driver)
+        new SearchResultPage()
                 .verifyResults();
-        String pagesource = driver.getPageSource();
-        System.out.println(pagesource);
     }
 
+    @Override
     @AfterMethod
-    public void closeDriver() {
-        driver.quit();
+    public void afterMethodStop() {
+        super.afterMethodStop();
     }
-
-
 }
 

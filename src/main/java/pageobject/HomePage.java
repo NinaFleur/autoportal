@@ -1,25 +1,17 @@
 package pageobject;
 
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.testng.Assert.assertEquals;
 
-
-public class HomePage {
-
+public class HomePage extends BasePage {
 
     @FindBy(css = ".master-menu ul li.item>a, .master-menu ul li.item>span")
     private List<WebElement> headerLinks;
-
-    private List<String> correctHeaderLinks = Arrays.asList("New Cars", "New Bikes", "Used Cars", "News & Articles", "More");
 
     @FindBy(css = ".ui-autocomplete-input")
     private WebElement searchInput;
@@ -30,58 +22,47 @@ public class HomePage {
     @FindBy(css = "a.red_but")
     private WebElement buttonViewDeals;
 
-    public String correctTitleFindCarForm = "Find Your Dream Car!";
-
-    public HomePage(WebDriver driver) {
-        PageFactory.initElements(driver, this);
+    public void navigate() {
+        webDriver.navigate().to("https://autoportal.com/");
     }
 
     private String getCarFormTitle() {
+        LOGGER.info("Get the \"Find Car\" form title");
         return titleFindCarForm.getText();
     }
 
-    public HomePage verifyTitle() {
+    public HomePage verifyTitle(String correctTitleFindCarForm) {
+        LOGGER.info("Verify the \"Find Car\" form title");
         assertEquals(getCarFormTitle(), correctTitleFindCarForm, "The title in the Car Find form isn't correct");
         return this;
     }
 
-    public void clickButtonViewDeals(){
-        buttonViewDeals.click();
+    public DealsPage clickButtonViewDeals() {
+        LOGGER.info("click the \"View Deals\" button");
+        click(buttonViewDeals);
+        switchToTabByIndex(1);
+        return new DealsPage();
     }
-
 
     private List<String> getHeaderLinks() {
+        LOGGER.info("Get all links' names in the Header");
         List<String> headerLinksText = new ArrayList<>();
-        for (int i = 0; i < headerLinks.size(); i++) {
-            String text = headerLinks.get(i).getText();
-            headerLinksText.add(text);
+        for (WebElement linkText : headerLinks) {
+            headerLinksText.add(linkText.getText());
         }
-
-//            for (WebElement linkText : headerLinks) {
-//            headerLinksText.add(linkText.getText());
-//        }
-//
         return headerLinksText;
-
     }
 
-    public HomePage compareHeaderLinks() {
-        assertEquals(correctHeaderLinks, getHeaderLinks(), "Header Links are incorrect");
+    public HomePage verifyHeaderLinks(List<String> correctHeaderLinks) {
+        LOGGER.info("Verify Header links");
+        assertEquals(getHeaderLinks(), correctHeaderLinks, "Header Links are incorrect");
         return this;
     }
 
-    private void enterSearchQuery(String strSearchText) {
-        searchInput.sendKeys(strSearchText);
-    }
-
-    private void clickEnterInSearchField() {
-        searchInput.sendKeys(Keys.ENTER);
-    }
-
     public void searchForQuery(String searchQuery) {
-        enterSearchQuery(searchQuery);
-        clickEnterInSearchField();
+        LOGGER.info("Search for: " + searchQuery);
+        sendKeys(searchInput, searchQuery);
+        pressEnter(searchInput);
     }
-
 }
 

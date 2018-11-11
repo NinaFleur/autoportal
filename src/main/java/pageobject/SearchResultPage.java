@@ -1,30 +1,25 @@
 package pageobject;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
 import static org.testng.Assert.assertTrue;
 
-public class SearchResultPage{
+public class SearchResultPage extends BasePage {
 
     @FindBy(css = ".search-result")
     private List<WebElement> searchResults;
 
-    public SearchResultPage(WebDriver driver) {
-        PageFactory.initElements(driver, this);
-    }
-
     private int getSearchResults() {
+        LOGGER.info("Check the Search results displaying on the \"Search Result\" page");
         return searchResults.size();
-
     }
 
     public SearchResultPage verifyResults() {
-        assertTrue( getSearchResults() != 0, "No results were found");
+        LOGGER.info("Verify Search results on the \"Search Result\" page");
+        assertTrue(getSearchResults() != 0, "No results were found");
         return this;
     }
 }
