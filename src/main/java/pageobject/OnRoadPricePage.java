@@ -24,13 +24,13 @@ public class OnRoadPricePage extends BasePage {
     private List<WebElement> models;
 
     @FindBy(css = ".form-lead [name='name']")
-    private WebElement fillInNameInput;
+    private WebElement inputName;
 
     @FindBy(css = ".form-lead [name='phone']")
-    private WebElement fillInPhoneInput;
+    private WebElement inputPhone;
 
     @FindBy(css = ".form-lead [name='gop_type_address']")
-    private WebElement fillInLocationInput;
+    private WebElement inputLocation;
 
     @FindBy(css = ".form-lead [name='purchaseDate']")
     private WebElement purchasePeriodDropDown;
@@ -51,4 +51,47 @@ public class OnRoadPricePage extends BasePage {
         }
         return this;
     }
+
+    public OnRoadPricePage selectModel(String modelName) {
+        click(selectModelDropDown);
+        for (WebElement model : models) {
+            if (model.getText().equals(modelName)) {
+                click(model);
+            }
+            break;
+        }
+        return this;
+    }
+
+    public OnRoadPricePage fillInInputName(String userName) {
+        sendKeys(inputName, userName);
+        return this;
+    }
+
+    public OnRoadPricePage fillInInputPhone(String userPhone) {
+        sendKeys(inputPhone, userPhone);
+        return this;
+    }
+
+    public OnRoadPricePage fillInInputLocation(String userLocation) {
+        sendKeys(inputLocation, userLocation);
+        return this;
+    }
+
+    public OnRoadPricePage selectPurchasePeriod(String purchaseDate) {
+        click(purchasePeriodDropDown);
+        for (WebElement date : purchaseDates) {
+            if (date.getText().equals(purchaseDate)) {
+                click(date);
+            }
+            break;
+        }
+        return this;
+    }
+
+    public GetOnRoadPriceResultPage clickBtnProceed() {
+        click(btnProceed);
+        return  new GetOnRoadPriceResultPage();
+    }
+
 }
