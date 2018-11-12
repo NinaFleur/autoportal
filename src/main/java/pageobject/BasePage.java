@@ -45,6 +45,14 @@ public class BasePage {
 
     public void waitForVisibilityBy(By locator) {
         try {
+            webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        } catch (NoSuchElementException nse) {
+            LOGGER.error("", nse);
+        }
+    }
+
+    public void waitForInVisibilityBy(By locator) {
+        try {
             webDriverWait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
         } catch (NoSuchElementException nse) {
             LOGGER.error("", nse);
@@ -71,7 +79,6 @@ public class BasePage {
         waitForClickable(webElement);
         webElement.click();
     }
-
 
     public void switchToTabByIndex(int index) {
         ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());

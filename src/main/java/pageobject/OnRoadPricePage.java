@@ -1,5 +1,7 @@
 package pageobject;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -46,8 +48,8 @@ public class OnRoadPricePage extends BasePage {
         for (WebElement brand : brands) {
             if (brand.getText().equals(brandName)) {
                 click(brand);
+                break;
             }
-            break;
         }
         return this;
     }
@@ -57,8 +59,8 @@ public class OnRoadPricePage extends BasePage {
         for (WebElement model : models) {
             if (model.getText().equals(modelName)) {
                 click(model);
+                break;
             }
-            break;
         }
         return this;
     }
@@ -75,6 +77,8 @@ public class OnRoadPricePage extends BasePage {
 
     public OnRoadPricePage fillInInputLocation(String userLocation) {
         sendKeys(inputLocation, userLocation);
+        waitForVisibilityBy(By.cssSelector(".ui-state-highlight"));
+        webDriver.findElements(By.cssSelector(".ui-state-highlight")).get(0).click();
         return this;
     }
 
@@ -83,8 +87,8 @@ public class OnRoadPricePage extends BasePage {
         for (WebElement date : purchaseDates) {
             if (date.getText().equals(purchaseDate)) {
                 click(date);
+                break;
             }
-            break;
         }
         return this;
     }
