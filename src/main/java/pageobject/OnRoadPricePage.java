@@ -1,13 +1,10 @@
 package pageobject;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Cookie;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
-import java.util.Set;
 
 public class OnRoadPricePage extends BasePage {
 
@@ -39,7 +36,7 @@ public class OnRoadPricePage extends BasePage {
     private WebElement inputLocation;
 
     @FindBy(css = ".ui-state-highlight")
-    private List<WebElement> autocompleteBox;
+    private List<WebElement> autocompleteOptions;
 
     @FindBy(css = ".form-lead [name='purchaseDate']")
     private WebElement purchasePeriodDropDown;
@@ -85,7 +82,7 @@ public class OnRoadPricePage extends BasePage {
     public OnRoadPricePage fillInInputLocation(String userLocation) {
         sendKeys(inputLocation, userLocation);
         waitForVisibilityBy(locationBox);
-        for (WebElement location : autocompleteBox) {
+        for (WebElement location : autocompleteOptions) {
             if (location.getText().contains(userLocation)) {
                 click(location);
                 break;
@@ -107,7 +104,6 @@ public class OnRoadPricePage extends BasePage {
 
     public GetOnRoadPriceResultPage clickBtnProceed() {
         click(btnProceed);
-        webDriver.navigate().to("https://autoportal.com/newcars/hyundai/santro/onroadprice-in-newdelhi.html");
         return new GetOnRoadPriceResultPage();
     }
 }
