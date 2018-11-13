@@ -1,7 +1,6 @@
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pageobject.GetOnRoadPriceResultPage;
 import pageobject.GopLeadsAdmin;
 import pageobject.OnRoadPricePage;
 import utils.Utils;
@@ -22,18 +21,19 @@ public class OnRoadPriceTest extends BaseTest {
         String userName = Utils.getRandomStringWithoutNumbers(7);
 
         onRoadPricePage
-                .selectBrand("Tata")
-                .selectModel("Tiago")
+                .selectBrand("Honda")
+                .selectModel("Brio")
                 .fillInInputName(userName)
                 .fillInInputPhone("9999999999")
                 .fillInInputLocation("New Delhi")
                 .selectPurchasePeriod("Planning to buy immediately")
                 .clickBtnProceed()
-                .verifyChosenModelTab("Tata Tiago");
+                .verifyChosenModelTab("Honda Brio");
         new GopLeadsAdmin()
-                .navigate()
+                .navigateToAdmin()
+                .loginAdmin()
+                .navigateToGopRequestTab()
                 .checkSavedLead(userName);
-
     }
 
     @Override
