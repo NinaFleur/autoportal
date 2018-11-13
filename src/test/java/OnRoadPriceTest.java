@@ -1,9 +1,10 @@
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pageobject.GetOnRoadPriceResultPage;
 import pageobject.OnRoadPricePage;
 
-public class OnRoadPriceTest extends BaseTest{
+public class OnRoadPriceTest extends BaseTest {
     private OnRoadPricePage onRoadPricePage;
 
     @Override
@@ -24,6 +25,9 @@ public class OnRoadPriceTest extends BaseTest{
                 .fillInInputLocation("New Delhi")
                 .selectPurchasePeriod("Planning to buy immediately")
                 .clickBtnProceed();
+        new GetOnRoadPriceResultPage()
+                .checkChosenModelTab("Hyundai Santro")
+                .verifyChosenModelTab();
     }
 
     @Override

@@ -1,17 +1,21 @@
 package pageobject;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
+import java.util.Set;
 
 public class OnRoadPricePage extends BasePage {
 
     public void navigate() {
         webDriver.navigate().to("https://autoportal.com/onroadprice.html");
     }
+
+    private static final By locationBox = By.cssSelector(".ui-state-highlight");
 
     @FindBy(css = ".form-lead [name='brand']")
     private WebElement selectBrandDropDown;
@@ -33,6 +37,9 @@ public class OnRoadPricePage extends BasePage {
 
     @FindBy(css = ".form-lead [name='gop_type_address']")
     private WebElement inputLocation;
+
+    @FindBy(css = ".ui-state-highlight")
+    private List<WebElement> autocompleteBox;
 
     @FindBy(css = ".form-lead [name='purchaseDate']")
     private WebElement purchasePeriodDropDown;
@@ -77,8 +84,13 @@ public class OnRoadPricePage extends BasePage {
 
     public OnRoadPricePage fillInInputLocation(String userLocation) {
         sendKeys(inputLocation, userLocation);
-        waitForVisibilityBy(By.cssSelector(".ui-state-highlight"));
-        webDriver.findElements(By.cssSelector(".ui-state-highlight")).get(0).click();
+        waitForVisibilityBy(locationBox);
+        for (WebElement location : autocompleteBox) {
+            if (location.getText().contains(userLocation)) {
+                click(location);
+                break;
+            }
+        }
         return this;
     }
 
@@ -95,7 +107,7 @@ public class OnRoadPricePage extends BasePage {
 
     public GetOnRoadPriceResultPage clickBtnProceed() {
         click(btnProceed);
-        return  new GetOnRoadPriceResultPage();
+        webDriver.navigate().to("https://autoportal.com/newcars/hyundai/santro/onroadprice-in-newdelhi.html");
+        return new GetOnRoadPriceResultPage();
     }
-
 }
