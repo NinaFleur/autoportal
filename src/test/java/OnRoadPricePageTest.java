@@ -5,7 +5,7 @@ import pageobject.GopLeadsAdmin;
 import pageobject.OnRoadPricePage;
 import utils.Utils;
 
-public class OnRoadPriceTest extends BaseTest {
+public class OnRoadPricePageTest extends BaseTest {
     private OnRoadPricePage onRoadPricePage;
 
     @Override
@@ -17,7 +17,7 @@ public class OnRoadPriceTest extends BaseTest {
     }
 
     @Test
-    public void submitGopForm() {
+    public void createGopLeadOnroadPriceForm() {
         String userName = Utils.getRandomStringWithoutNumbers(7);
 
         onRoadPricePage

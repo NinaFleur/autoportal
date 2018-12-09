@@ -1,8 +1,6 @@
-import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pageobject.DealsPage;
 import pageobject.HomePage;
 import pageobject.SearchResultPage;
 
@@ -29,7 +27,7 @@ public class HomePageTest extends BaseTest {
     }
 
     @Test
-    public void openViewDealsTab() {
+    public void verifyRequestCallBackButtonOnTheDealsPage() {
         homePage
                 .clickButtonViewDeals()
                 .checkBtnRequestCallBack();
@@ -44,7 +42,7 @@ public class HomePageTest extends BaseTest {
     }
 
     @Test
-    public void searchTest() {
+    public void verifySearchResults() {
         homePage
                 .searchForQuery("Tata");
         new SearchResultPage()

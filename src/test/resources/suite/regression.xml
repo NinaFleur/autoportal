@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="Regression test" verbose="1">
-    <test name="Regression" >
+<suite name="Regression suite">
+    <test name="Regression test">
         <classes>
             <class name="HomePageTest"/>
+            <class name="BrandPageTest"/>
+            <class name="ModelPageTest"/>
+            <class name="OnRoadPricePageTest"/>
         </classes>
     </test>
 </suite>

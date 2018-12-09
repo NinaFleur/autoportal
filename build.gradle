@@ -16,5 +16,8 @@ dependencies {
     compile 'org.seleniumhq.selenium:selenium-java:3.5.3'
     compile 'org.testng:testng:6.9.6'
     compile 'log4j:log4j:1.2.17'
-
+    compile 'ru.yandex.qatools.htmlelements:htmlelements-java:1.8'
+    compile 'commons-lang:commons-lang:2.6'
 }
+
+
