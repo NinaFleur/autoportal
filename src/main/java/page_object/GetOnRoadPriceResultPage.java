@@ -1,4 +1,4 @@
-package pageobject;
+package page_object;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -7,9 +7,10 @@ import org.openqa.selenium.support.FindBy;
 import java.util.List;
 
 import static org.testng.Assert.assertTrue;
+import static test_data.Urls.GOP_RESULT_PAGE;
 
 
-public class GetOnRoadPriceResultPage extends BasePage {
+public class GetOnRoadPriceResultPage extends BaseElement {
 
     @FindBy(css = ".view-tab")
     private List<WebElement> carModelTab;
@@ -17,7 +18,7 @@ public class GetOnRoadPriceResultPage extends BasePage {
     private static final By tab = By.cssSelector(".view-tab");
 
     public void navigateToGetOnRoadPricePageResult() {
-        webDriver.navigate().to("https://autoportal.com/newcars/hyundai/santro/onroadprice-in-newdelhi.html");
+        webDriver.navigate().to(GOP_RESULT_PAGE);
     }
 
     public GetOnRoadPriceResultPage verifyChosenModelTab(String carModelName) {

@@ -1,4 +1,4 @@
-package pageobject;
+package page_object;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -7,8 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.testng.Assert.assertEquals;
+import static test_data.Urls.INDEX;
 
-public class HomePage extends BasePage {
+public class HomePage extends BaseElement {
 
     @FindBy(css = ".master-menu ul li.item>a, .master-menu ul li.item>span")
     private List<WebElement> headerLinks;
@@ -23,7 +24,7 @@ public class HomePage extends BasePage {
     private WebElement buttonViewDeals;
 
     public void navigate() {
-        webDriver.navigate().to("https://autoportal.com/");
+        webDriver.navigate().to(INDEX);
     }
 
     private String getCarFormTitle() {
@@ -64,5 +65,7 @@ public class HomePage extends BasePage {
         sendKeys(searchInput, searchQuery);
         pressEnter(searchInput);
     }
+
+
 }
 

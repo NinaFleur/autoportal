@@ -1,4 +1,4 @@
-package pageobject;
+package page_object;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -6,11 +6,9 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
-public class OnRoadPricePage extends BasePage {
+import static test_data.Urls.ON_ROAD_PRICE_PAGE;
 
-    public void navigate() {
-        webDriver.navigate().to("https://autoportal.com/onroadprice.html");
-    }
+public class OnRoadPricePage extends BaseElement {
 
     private static final By locationBox = By.cssSelector(".ui-state-highlight");
 
@@ -46,6 +44,10 @@ public class OnRoadPricePage extends BasePage {
 
     @FindBy(css = ".form-lead .red_but.cell-sm")
     private WebElement btnProceed;
+
+    public void navigate() {
+        webDriver.navigate().to(ON_ROAD_PRICE_PAGE);
+    }
 
     public OnRoadPricePage selectBrand(String brandName) {
         click(selectBrandDropDown);

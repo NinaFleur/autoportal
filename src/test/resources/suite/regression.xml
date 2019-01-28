@@ -7,6 +7,9 @@
             <class name="BrandPageTest"/>
             <class name="ModelPageTest"/>
             <class name="OnRoadPricePageTest"/>
+            <class name="BrochureTest"/>
+            <class name="RobotTest"/>
+            <class name="FuckYouRobotTest"/>
         </classes>
     </test>
 </suite>

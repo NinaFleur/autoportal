@@ -1,8 +1,8 @@
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pageobject.GopLeadsAdmin;
-import pageobject.OnRoadPricePage;
+import page_object.LeadsAdmin;
+import page_object.OnRoadPricePage;
 import utils.Utils;
 
 public class OnRoadPricePageTest extends BaseTest {
@@ -16,20 +16,21 @@ public class OnRoadPricePageTest extends BaseTest {
         onRoadPricePage.navigate();
     }
 
-    @Test
+    @Test (description = "Fill GOP form, verify if lead is created")
     public void createGopLeadOnroadPriceForm() {
         String userName = Utils.getRandomStringWithoutNumbers(7);
+        String userLocation = Utils.getRandomLocation();
 
         onRoadPricePage
                 .selectBrand("Honda")
                 .selectModel("Brio")
                 .fillInInputName(userName)
                 .fillInInputPhone("9999999999")
-                .fillInInputLocation("New Delhi")
+                .fillInInputLocation(userLocation)
                 .selectPurchasePeriod("Planning to buy immediately")
                 .clickBtnProceed()
                 .verifyChosenModelTab("Honda Brio");
-        new GopLeadsAdmin()
+        new LeadsAdmin()
                 .navigateToAdmin()
                 .loginAdmin()
                 .navigateToGopRequestTab()

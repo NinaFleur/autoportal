@@ -1,9 +1,10 @@
 import client.DriverFactory;
+import listeners.TestListener;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 
-@Listeners(listener_demo.ListenerTest.class)
+@Listeners(TestListener.class)
 
 public class BaseTest {
 

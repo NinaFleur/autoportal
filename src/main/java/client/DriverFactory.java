@@ -2,6 +2,7 @@ package client;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
@@ -38,6 +39,7 @@ public class DriverFactory {
 
         public WebDriver startChromeDriver() {
             String chromeDriverPath = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "chromedriver";
+            DesiredCapabilities desiredCapabilities = DesiredCapabilities.chrome();
             System.setProperty("webdriver.chrome.driver", chromeDriverPath);
             return new ChromeDriver();
         }
