@@ -1,8 +1,8 @@
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import page_object.HomePage;
-import page_object.SearchResultPage;
+import pageobjects.HomePage;
+import pageobjects.SearchResultPage;
 
 import java.util.Arrays;
 import java.util.List;

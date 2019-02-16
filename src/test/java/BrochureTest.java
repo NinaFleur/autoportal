@@ -1,8 +1,8 @@
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import page_object.BrochurePage;
-import page_object.BrochurePdfPage;
+import pageobjects.BrochurePage;
+import pageobjects.BrochurePdfPage;
 
 public class BrochureTest extends BaseTest {
 

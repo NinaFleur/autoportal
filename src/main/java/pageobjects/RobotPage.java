@@ -1,4 +1,4 @@
-package page_object;
+package pageobjects;
 
 import java.io.File;
 

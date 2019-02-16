@@ -1,10 +1,10 @@
-package page_element;
+package pageelements;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import page_object.BaseElement;
-import page_object.GetOnRoadPriceResultPage;
+import pageobjects.BaseElement;
+import pageobjects.GetOnRoadPriceResultPage;
 import ru.yandex.qatools.htmlelements.annotations.Block;
 import ru.yandex.qatools.htmlelements.annotations.Name;
 

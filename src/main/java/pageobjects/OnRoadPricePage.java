@@ -1,4 +1,4 @@
-package page_object;
+package pageobjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
-import static test_data.Urls.ON_ROAD_PRICE_PAGE;
+import static testdata.Urls.ON_ROAD_PRICE_PAGE;
 
 public class OnRoadPricePage extends BaseElement {
 

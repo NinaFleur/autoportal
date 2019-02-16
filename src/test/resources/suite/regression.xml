@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="Regression suite">
-    <test name="Regression test">
+    <test name="Regression test" thread-count="3" parallel="classes">
         <classes>
             <class name="HomePageTest"/>
             <class name="BrandPageTest"/>
             <class name="ModelPageTest"/>
             <class name="OnRoadPricePageTest"/>
-            <class name="BrochureTest"/>
-            <class name="RobotTest"/>
-            <class name="FuckYouRobotTest"/>
         </classes>
     </test>
 </suite>

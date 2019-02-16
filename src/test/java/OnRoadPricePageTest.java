@@ -1,8 +1,8 @@
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import page_object.LeadsAdmin;
-import page_object.OnRoadPricePage;
+import pageobjects.LeadsAdmin;
+import pageobjects.OnRoadPricePage;
 import utils.Utils;
 
 public class OnRoadPricePageTest extends BaseTest {

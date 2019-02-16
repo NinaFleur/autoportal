@@ -1,14 +1,13 @@
-package page_object;
+package pageobjects;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import page_element.GopPopUp;
+import pageelements.GopPopUp;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static test_data.Urls.BRAND_PAGE;
+import static testdata.Urls.BRAND_PAGE;
 
 public class BrandPage extends BaseElement {
 

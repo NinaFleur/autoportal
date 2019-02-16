@@ -1,4 +1,4 @@
-package page_object;
+package pageobjects;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.testng.Assert.assertEquals;
-import static test_data.Urls.INDEX;
+import static testdata.Urls.INDEX;
 
 public class HomePage extends BaseElement {
 

@@ -1,14 +1,12 @@
-package page_element;
+package pageelements;
 
-import com.google.common.collect.Iterables;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import page_object.BaseElement;
+import pageobjects.BaseElement;
 import ru.yandex.qatools.htmlelements.annotations.Block;
 import ru.yandex.qatools.htmlelements.annotations.Name;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Name("BookingPopUp")

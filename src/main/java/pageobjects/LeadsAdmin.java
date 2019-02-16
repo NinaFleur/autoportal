@@ -1,13 +1,13 @@
-package page_object;
+package pageobjects;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
-import static test_data.Urls.ADMIN_BOOKING_LEADS;
-import static test_data.Urls.ADMIN_GOP_LEADS;
-import static test_data.Urls.ADMIN_LOGIN_PAGE;
+import static testdata.Urls.ADMIN_BOOKING_LEADS;
+import static testdata.Urls.ADMIN_GOP_LEADS;
+import static testdata.Urls.BASE_ADMIN_URL;
 
 public class LeadsAdmin extends BaseElement {
 
@@ -24,7 +24,7 @@ public class LeadsAdmin extends BaseElement {
     private List<WebElement> leads;
 
     public LeadsAdmin navigateToAdmin() {
-        webDriver.navigate().to(ADMIN_LOGIN_PAGE);
+        webDriver.navigate().to(BASE_ADMIN_URL);
         return this;
     }
 

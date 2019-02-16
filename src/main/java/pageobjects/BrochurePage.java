@@ -1,9 +1,9 @@
-package page_object;
+package pageobjects;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static test_data.Urls.BROCHURE_PAGE;
+import static testdata.Urls.BROCHURE_PAGE;
 
 public class BrochurePage extends BaseElement {
 

@@ -1,4 +1,4 @@
-package page_object;
+package pageobjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import java.util.List;
 
 import static org.testng.Assert.assertTrue;
-import static test_data.Urls.GOP_RESULT_PAGE;
+import static testdata.Urls.GOP_RESULT_PAGE;
 
 
 public class GetOnRoadPriceResultPage extends BaseElement {

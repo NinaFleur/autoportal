@@ -1,4 +1,4 @@
-package page_object;
+package pageobjects;
 
 import client.DriverFactory;
 import org.apache.log4j.Logger;
@@ -13,9 +13,6 @@ import ru.yandex.qatools.htmlelements.element.HtmlElement;
 import ru.yandex.qatools.htmlelements.loader.HtmlElementLoader;
 import utils.LoggerUtil;
 
-import java.awt.Robot;
-import java.awt.*;
-import java.awt.event.InputEvent;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
