@@ -20,8 +20,23 @@ public class HomePage extends BaseElement {
     @FindBy(css = ".frm_srch-in p")
     private WebElement titleFindCarForm;
 
+    @FindBy(css = "[name='brand']")
+    private WebElement selectBrandDropDown;
+
+    @FindBy(css = "[name='brand'] option")
+    private List<WebElement> brands;
+
+    @FindBy(css = "[name='model']")
+    private WebElement selectModelDropDown;
+
+    @FindBy(css = "[name='model'] option")
+    private List<WebElement> models;
+
+    @FindBy(css = "[value='Find new cars']")
+    private WebElement btnFindNewCars;
+
     @FindBy(css = "a.red_but")
-    private WebElement buttonViewDeals;
+    private WebElement btnViewDeals;
 
     public void navigate() {
         webDriver.navigate().to(INDEX);
@@ -40,7 +55,7 @@ public class HomePage extends BaseElement {
 
     public DealsPage clickButtonViewDeals() {
         LOGGER.info("click the \"View Deals\" button");
-        click(buttonViewDeals);
+        click(btnViewDeals);
         switchToTabByIndex(1);
         return new DealsPage();
     }
@@ -66,6 +81,26 @@ public class HomePage extends BaseElement {
         pressEnter(searchInput);
     }
 
+    public ModelPage chooseBrandModelFromDropDown(String brandName, String modelName) {
+        click(selectBrandDropDown);
+        for (WebElement brand : brands) {
+            if (brand.getText().equals(brandName)) {
+                click(brand);
+                break;
+            }
+        }
 
+        click(selectModelDropDown);
+        for (WebElement model : models) {
+            if (model.getText().equals(modelName)) {
+                click(model);
+                break;
+            }
+        }
+
+        click(btnFindNewCars);
+
+        return new ModelPage();
+    }
 }
 

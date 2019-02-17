@@ -1,5 +1,7 @@
 package pageobjects;
 
+import buisnessobjects.Model;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -21,11 +23,12 @@ public class GetOnRoadPriceResultPage extends BaseElement {
         webDriver.navigate().to(GOP_RESULT_PAGE);
     }
 
-    public GetOnRoadPriceResultPage verifyChosenModelTab(String carModelName) {
+    @Step("Verify chosen Model tab")
+    public GetOnRoadPriceResultPage verifyChosenModelTab(String fullModelName) {
         LOGGER.info("Verify the Model tab title");
         waitForVisibilityBy(tab);
         assertTrue(carModelTab.get(0).isDisplayed(), "The Model tab isn't displayed");
-        assertTrue(carModelTab.get(0).getText().equals(carModelName));
+        assertTrue(carModelTab.get(0).getText().equals(fullModelName));
         return this;
     }
 }

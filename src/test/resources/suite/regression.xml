@@ -7,6 +7,8 @@
             <class name="BrandPageTest"/>
             <class name="ModelPageTest"/>
             <class name="OnRoadPricePageTest"/>
+            <class name="api.ModelsApiTest"/>
+            <class name="api.GetCitiesTest"/>
         </classes>
     </test>
 </suite>

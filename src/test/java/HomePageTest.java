@@ -50,7 +50,6 @@ public class HomePageTest extends BaseTest {
                 .verifyResults();
     }
 
-
     @Override
     @AfterMethod
     public void afterMethodStop() {

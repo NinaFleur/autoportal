@@ -6,13 +6,16 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Model {
 
-    private String complect_path;
     private String brand_path;
+    private String complect_path;
+    private String brand_name;
     private String complect_name;
     private String complect_add;
     private String year;
-    private String brand_name;
     private String key;
+    private int price_min;
+    private int price_max;
+    private String image;
 
     public Model() {
     }
@@ -71,5 +74,33 @@ public class Model {
 
     public void setBrand_path(String brand_path) {
         this.brand_path = brand_path;
+    }
+
+    public int getPrice_min() {
+        return price_min;
+    }
+
+    public void setPrice_min(int price_min) {
+        this.price_min = price_min;
+    }
+
+    public int getPrice_max() {
+        return price_max;
+    }
+
+    public void setPrice_max(int price_max) {
+        this.price_max = price_max;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getFullModelName () {
+        return brand_name + " " + complect_name;
     }
 }

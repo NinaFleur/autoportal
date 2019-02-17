@@ -21,6 +21,6 @@ public class ModelsApiTest extends BaseApiTest {
 
     @Test()
     public void getModelArray() {
-        restApiExecutor.getModelArrayByIndex(0);
+        restApiExecutor.getModelByIndex(0);
     }
 }

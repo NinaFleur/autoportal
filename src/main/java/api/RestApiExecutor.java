@@ -85,10 +85,21 @@ public class RestApiExecutor extends RestApiClient {
         return docs;
     }
 
-    public Model getModelArrayByIndex(int index) {
+    public Model getModelByIndex(int index) {
         System.out.println("This is an array with Model data " + getModelsDocs().get(index));
         return getModelsDocs().get(index);
+    }
 
+    public Model getModelByName(String name) {
+        List<Model> models = getModelsDocs();
+        Model modelDoc = new Model();
+        for (Model model : models) {
+            if (model.getComplect_name().equals(name)) {
+                modelDoc = model;
+                break;
+            }
+        }
+        return modelDoc;
     }
 
 

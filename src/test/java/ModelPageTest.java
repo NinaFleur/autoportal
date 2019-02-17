@@ -1,8 +1,8 @@
 import api.RestApiExecutor;
 import buisnessobjects.Model;
-import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pageobjects.LeadsAdmin;
 import pageobjects.ModelPage;
@@ -18,18 +18,41 @@ public class ModelPageTest extends BaseTest {
     public void beforeMethodInit() {
         super.beforeMethodInit();
         modelPage = new ModelPage();
-        modelPage.navigateToModelPage();
     }
 
-    @Test(description = "Click on the Top Gop btn on the Model page, fill in GOP pup-up, verify if lead is created ")
-    public void createLeadTopGopPopup() {
+    @Override
+    @AfterMethod
+    public void afterMethodStop() {
+        super.afterMethodStop();
+    }
+
+    @DataProvider(name = "modelProvider")
+    public static Object[][] modelProvider() {
+        Model model = RestApiExecutor.getInstance().getModelByIndex(0);
+        String modelPageUrl = BASE_NEWCARS_PAGE + model.getBrand_path() + "/" + model.getComplect_path();
+        return new Object[][]{
+                {modelPageUrl, model}
+        };
+    }
+
+    @DataProvider(name = "modelUrlProvider")
+    public static Object[][] modelUrlProvider() {
+        Model model = RestApiExecutor.getInstance().getModelByIndex(0);
+        String modelPageUrl = BASE_NEWCARS_PAGE + model.getBrand_path() + "/" + model.getComplect_path();
+        return new Object[][]{
+                {modelPageUrl}
+        };
+    }
+
+    @Test(description = "Click on the Top Gop btn on the Model page, fill in GOP pup-up, verify if lead is created", dataProvider = "modelProvider")
+    public void createLeadTopGopPopup(String modelPageUrl, Model model) {
         String userName = Utils.getRandomStringWithoutNumbers(7);
         String userLocation = Utils.getRandomLocation();
 
-        modelPage
+        modelPage.navigateTo(modelPageUrl)
                 .clickTopGopBtn()
                 .fillInAndSubmit(userName, "9999999999", userLocation, "Just researching")
-                .verifyChosenModelTab("Tata Tiago");
+                .verifyChosenModelTab(model.getFullModelName());
         new LeadsAdmin()
                 .navigateToAdmin()
                 .loginAdmin()
@@ -37,15 +60,15 @@ public class ModelPageTest extends BaseTest {
                 .checkSavedLead(userName);
     }
 
-    @Test(description = "Click on the Gop btn from the Price List, fill in GOP pup-up, verify if lead is created")
-    public void createLeadPriceListGopPopup() {
+    @Test(description = "Click on the Gop btn from the Price List, fill in GOP pup-up, verify if lead is created", dataProvider = "modelProvider")
+    public void createLeadPriceListGopPopup(String modelPageUrl, Model model) {
         String userName = Utils.getRandomStringWithoutNumbers(7);
         String userLocation = Utils.getRandomLocation();
 
-        modelPage
+        modelPage.navigateTo(modelPageUrl)
                 .clickPriceListGopBtn()
                 .fillInAndSubmit(userName, "9999999999", userLocation, "Just researching")
-                .verifyChosenModelTab("Tata Tiago");
+                .verifyChosenModelTab(model.getFullModelName());
         new LeadsAdmin()
                 .navigateToAdmin()
                 .loginAdmin()
@@ -53,12 +76,12 @@ public class ModelPageTest extends BaseTest {
                 .checkSavedLead(userName);
     }
 
-    @Test(description = "Click on the Top Booking btn, create booking lead")
-    public void createLeadTopBookingPopup() {
+    @Test(description = "Click on the Top Booking btn, create booking lead", dataProvider = "modelUrlProvider")
+    public void createLeadTopBookingPopup(String modelPageUrl) {
         String userName = Utils.getRandomStringWithoutNumbers(7);
         String userLocation = Utils.getRandomLocation();
 
-        modelPage
+        modelPage.navigateTo(modelPageUrl)
                 .clickTopBookingBtn()
                 .fillInAndSubmitBookingPopup(userLocation, userName, "test@test.com", "9999999999");
         new LeadsAdmin()
@@ -68,27 +91,9 @@ public class ModelPageTest extends BaseTest {
                 .checkSavedLead(userName);
     }
 
-    @Test(description = "Get the Model title API and compare it to the title on UI")
-    public void verifyModelTitle() {
-        Model model = RestApiExecutor.getInstance().getModelArrayByIndex(0);
-        String modelNameFromApi = model.getBrand_name() + " " + model.getComplect_name();
-        String modelNameFromUi = modelPage.getModelName();
-        Assert.assertEquals(modelNameFromApi, modelNameFromUi, "Titles from UI and API are equals");
-    }
-
-    @Test(description = "Get the Model URL from the API response and compare model titles")
-    public void verifyModelData() {
-
-        Model model = RestApiExecutor.getInstance().getModelArrayByIndex(0);
-        String modelPageUrl = BASE_NEWCARS_PAGE + model.getBrand_path() + "/" + model.getComplect_path();
+    @Test(description = "Verify Model Data", dataProvider = "modelProvider")
+    public void verifyModelData(String modelPageUrl, Model model) {
         modelPage.navigateTo(modelPageUrl);
         modelPage.verifyModel(model);
-    }
-
-
-    @Override
-    @AfterMethod
-    public void afterMethodStop() {
-        super.afterMethodStop();
     }
 }
