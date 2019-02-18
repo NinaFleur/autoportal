@@ -11,8 +11,8 @@ public class BrochurePdfPage extends BaseElement {
 
     @FindBy(css = "#plugin")
     private WebElement pdfFile;
-
     public void savePdfFile() {
+        LOGGER.info("Save brochure file in PDF using robot.class");
 
         Actions action = new Actions(webDriver);
         action.click(pdfFile).build().perform();

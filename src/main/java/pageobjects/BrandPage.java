@@ -20,10 +20,12 @@ public class BrandPage extends BaseElement {
     private List<WebElement> btnBrandGop;
 
     public void navigateToBrandPage() {
+        LOGGER.info("Navigate to the Brand page");
         webDriver.navigate().to(BRAND_PAGE);
     }
 
     private List<String> getModelTitles() {
+        LOGGER.info("Get all model titles on the Brand page");
         List<String> modelNameTitles = new ArrayList<>();
         for (WebElement model : modelNames) {
             modelNameTitles.add(model.getText());
@@ -32,6 +34,7 @@ public class BrandPage extends BaseElement {
     }
 
     public GopPopUp clickBrandGopBtn(String modelName) {
+        LOGGER.info("Click GOP btn on the Brand page with the received model name ");
         List<String> titles = getModelTitles();
         for (int i = 0; i < titles.size(); i++) {
             if (titles.get(i).equals(modelName)) {
@@ -41,10 +44,6 @@ public class BrandPage extends BaseElement {
         }
         return gopPopUp;
     }
-
-
-
-
 
 
 }

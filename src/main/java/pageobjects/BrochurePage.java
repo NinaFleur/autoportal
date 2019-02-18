@@ -11,10 +11,12 @@ public class BrochurePage extends BaseElement {
     private WebElement downloadBrochureElement;
 
     public void navigateToBrochurePage() {
+        LOGGER.info("Navigate to the Brochure page");
         webDriver.navigate().to(BROCHURE_PAGE);
     }
 
     public BrochurePdfPage clickDownloadBrochure() {
+        LOGGER.info("Click the Download brochure btn");
         click(downloadBrochureElement);
         return new BrochurePdfPage();
     }

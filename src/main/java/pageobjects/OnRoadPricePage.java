@@ -50,6 +50,7 @@ public class OnRoadPricePage extends BaseElement {
     }
 
     public OnRoadPricePage selectBrand(String brandName) {
+        LOGGER.info("Select Brand on the OnRoadPrice page");
         click(selectBrandDropDown);
         for (WebElement brand : brands) {
             if (brand.getText().equals(brandName)) {
@@ -61,6 +62,7 @@ public class OnRoadPricePage extends BaseElement {
     }
 
     public OnRoadPricePage selectModel(String modelName) {
+        LOGGER.info("Select Model on the OnRoadPrice page");
         click(selectModelDropDown);
         for (WebElement model : models) {
             if (model.getText().equals(modelName)) {
@@ -72,16 +74,19 @@ public class OnRoadPricePage extends BaseElement {
     }
 
     public OnRoadPricePage fillInInputName(String userName) {
+        LOGGER.info("Fill the User name in the GOP form");
         sendKeys(inputName, userName);
         return this;
     }
 
     public OnRoadPricePage fillInInputPhone(String userPhone) {
+        LOGGER.info("Fill the User phone in the GOP form");
         sendKeys(inputPhone, userPhone);
         return this;
     }
 
     public OnRoadPricePage fillInInputLocation(String userLocation) {
+        LOGGER.info("Select the User Location from autosuggest");
         sendKeys(inputLocation, userLocation);
         waitForVisibilityBy(locationBox);
         for (WebElement location : autocompleteOptions) {
@@ -94,6 +99,7 @@ public class OnRoadPricePage extends BaseElement {
     }
 
     public OnRoadPricePage selectPurchasePeriod(String purchaseDate) {
+        LOGGER.info("Select Purchase period from the drop-down");
         click(purchasePeriodDropDown);
         for (WebElement date : purchaseDates) {
             if (date.getText().equals(purchaseDate)) {
@@ -105,6 +111,7 @@ public class OnRoadPricePage extends BaseElement {
     }
 
     public GetOnRoadPriceResultPage clickBtnProceed() {
+        LOGGER.info("Click the Proceed btn");
         click(btnProceed);
         return new GetOnRoadPriceResultPage();
     }

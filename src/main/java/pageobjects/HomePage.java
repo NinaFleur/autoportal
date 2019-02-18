@@ -54,7 +54,7 @@ public class HomePage extends BaseElement {
     }
 
     public DealsPage clickButtonViewDeals() {
-        LOGGER.info("click the \"View Deals\" button");
+        LOGGER.info("click the \"View Deals\" button in the AVP banner");
         click(btnViewDeals);
         switchToTabByIndex(1);
         return new DealsPage();
@@ -70,7 +70,7 @@ public class HomePage extends BaseElement {
     }
 
     public HomePage verifyHeaderLinks(List<String> correctHeaderLinks) {
-        LOGGER.info("Verify Header links");
+        LOGGER.info("Verify Header links' names");
         assertEquals(getHeaderLinks(), correctHeaderLinks, "Header Links are incorrect");
         return this;
     }
@@ -81,7 +81,8 @@ public class HomePage extends BaseElement {
         pressEnter(searchInput);
     }
 
-    public ModelPage chooseBrandModelFromDropDown(String brandName, String modelName) {
+    public ModelPage selectBrandModelFromDropDown(String brandName, String modelName) {
+        LOGGER.info("Select Brand/Model in the \" Find Car\" form");
         click(selectBrandDropDown);
         for (WebElement brand : brands) {
             if (brand.getText().equals(brandName)) {
@@ -99,7 +100,6 @@ public class HomePage extends BaseElement {
         }
 
         click(btnFindNewCars);
-
         return new ModelPage();
     }
 }

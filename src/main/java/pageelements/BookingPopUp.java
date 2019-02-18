@@ -48,6 +48,7 @@ public class BookingPopUp extends BaseElement {
     private WebElement popupBookingBtnProceed;
 
     private void fillInInputLocation(String userLocation) {
+        LOGGER.info("Select the User location in the Booking pop-up");
         sendKeys(popupBookingInputLocation, userLocation);
         waitForVisibilityBy(popupBookinglocationBox);
         for (WebElement location : popupBookingAutocompleteOptions) {
@@ -59,32 +60,39 @@ public class BookingPopUp extends BaseElement {
     }
 
     private void selectVariant() {
+        LOGGER.info("Select the Model Variant in the Booking pop-up");
         click(popupBookingVariant);
         click(popupBookingVariantOptions.get(5));
     }
 
     private void fillInInputName(String userName) {
+        LOGGER.info("Fill the User name in the Booking pop-up");
         sendKeys(popupBookingInputName, userName);
     }
 
     private void fillInInputEmail(String userEmail) {
+        LOGGER.info("Fill the User email in the Booking pop-up");
         sendKeys(popupBookingInputEmail, userEmail);
     }
 
     private void fillInInputPhone(String userPhone) {
+        LOGGER.info("Fill the User phone in the Booking pop-up");
         sendKeys(popupBookingInputPhone, userPhone);
     }
 
     private void selectDealer() {
+        LOGGER.info("Select the Dealer in the Booking pop-up");
         click(popupBookingDealer);
         click(popupBookingDealerOptions.get(1));
     }
 
     private void clickBtnProceed() {
+        LOGGER.info("Click the Proceed btn in the Booking pop-up");
         click(popupBookingBtnProceed);
     }
 
     public void fillInAndSubmitBookingPopup(String userLocation, String userName, String userEmail, String userPhone) {
+        LOGGER.info("Fill in the Booking pop-up with the User data, click the Proceed btn ");
         fillInInputLocation(userLocation);
         selectVariant();
         fillInInputName(userName);

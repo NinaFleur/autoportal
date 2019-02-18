@@ -1,6 +1,5 @@
 package pageobjects;
 
-import buisnessobjects.Model;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -20,12 +19,13 @@ public class GetOnRoadPriceResultPage extends BaseElement {
     private static final By tab = By.cssSelector(".view-tab");
 
     public void navigateToGetOnRoadPricePageResult() {
+        LOGGER.info("Navigate to the GOP Result page");
         webDriver.navigate().to(GOP_RESULT_PAGE);
     }
 
     @Step("Verify chosen Model tab")
     public GetOnRoadPriceResultPage verifyChosenModelTab(String fullModelName) {
-        LOGGER.info("Verify the Model tab title");
+        LOGGER.info("Verify the Model tab title on the GORP");
         waitForVisibilityBy(tab);
         assertTrue(carModelTab.get(0).isDisplayed(), "The Model tab isn't displayed");
         assertTrue(carModelTab.get(0).getText().equals(fullModelName));

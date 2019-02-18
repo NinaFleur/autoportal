@@ -24,10 +24,12 @@ public class RestApiExecutor extends RestApiClient {
     }
 
     public ValidatableResponse getCitiesDocsResponse() {
+        LOGGER.info("Hit the All_CITIES API");
         return executeGetRequest(AP_CITIES);
     }
 
     public List<City> getCitiesDocs() {
+        LOGGER.info("Hit the All_CITIES API, get all the data in the \"docs\" array");
         String apiEndpoint = AP_CITIES;
         ValidatableResponse response = executeGetRequest(apiEndpoint).statusCode(200);
         List<City> docs = new ArrayList<>();
@@ -62,16 +64,18 @@ public class RestApiExecutor extends RestApiClient {
     }
 
     public void getCityArrayByIndex(int index) {
+        LOGGER.info("Get City data in the array by index");
         getCitiesDocs().get(index);
         System.out.println("This is an array with City data " + getCitiesDocs().get(index));
     }
 
     public ValidatableResponse getModelsDocsResponse() {
-        LOGGER.info("Get 200 Model API response");
+        LOGGER.info("Hit the ALL_MODELS API");
         return executeGetRequest(AP_CAR_MODELS);
     }
 
     public List<Model> getModelsDocs() {
+        LOGGER.info("Hit the ALL_MODELS API, get all the data in the \"docs\" array");
         String apiEndpoint = AP_CAR_MODELS;
         ValidatableResponse response = executeGetRequest(apiEndpoint).statusCode(200);
         List<Model> docs = new ArrayList<>();
@@ -86,11 +90,13 @@ public class RestApiExecutor extends RestApiClient {
     }
 
     public Model getModelByIndex(int index) {
+        LOGGER.info("Get Model data in the array by index");
         System.out.println("This is an array with Model data " + getModelsDocs().get(index));
         return getModelsDocs().get(index);
     }
 
     public Model getModelByName(String name) {
+        LOGGER.info("Get the Model data in an array by name");
         List<Model> models = getModelsDocs();
         Model modelDoc = new Model();
         for (Model model : models) {

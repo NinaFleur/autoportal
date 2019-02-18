@@ -39,14 +39,17 @@ public class GopPopUp extends BaseElement {
     private WebElement popupGopBtnProceed;
 
     private void fillInInputName(String userName) {
+        LOGGER.info("Fill the User name in the GOP pop-up");
         sendKeys(popupGopInputName, userName);
     }
 
     private void fillInInputPhone(String userPhone) {
+        LOGGER.info("Fill the User phone in the GOP pop-up");
         sendKeys(popupGopInputPhone, userPhone);
     }
 
     private void fillInInputLocation(String userLocation) {
+        LOGGER.info("Select the User location in the GOP pop-up");
         sendKeys(popupGopInputLocation, userLocation);
         waitForVisibilityBy(popupGoplocationBox);
         for (WebElement location : popupGopAutocompleteOptions) {
@@ -58,6 +61,7 @@ public class GopPopUp extends BaseElement {
     }
 
     private void selectPurchasePeriod(String purchaseDate) {
+        LOGGER.info("Select the Purchase period in the GOP pop-up");
         click(popupGopPurchasePeriodDropDown);
         for (WebElement date : popupGopPurchaseDates) {
             if (date.getText().equals(purchaseDate)) {
@@ -68,10 +72,12 @@ public class GopPopUp extends BaseElement {
     }
 
     private void clickBtnProceed() {
+        LOGGER.info("Click the Proceed btn in the GOP pop-up");
         click(popupGopBtnProceed);
     }
 
     public GetOnRoadPriceResultPage fillInAndSubmit(String userName, String userPhone, String userLocation, String purchaseDate) {
+        LOGGER.info("Fill in the GOP pop-upp with the User data, click the Proceed btn");
         fillInInputName(userName);
         fillInInputPhone(userPhone);
         fillInInputLocation(userLocation);

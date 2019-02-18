@@ -13,9 +13,8 @@ public class DealsPage extends BaseElement {
     List<WebElement> btnRequestCallBack;
 
     public DealsPage checkBtnRequestCallBack() {
-        LOGGER.info("check the \"Request Call Back\" buttons");
+        LOGGER.info("check if the \"Request Call Back\" buttons are displayed");
         assertTrue(btnRequestCallBack.get(0).isDisplayed(), "Request CallBack buttons are not displayed");
         return this;
     }
-
 }

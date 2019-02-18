@@ -5,9 +5,7 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
-import static testdata.Urls.ADMIN_BOOKING_LEADS;
-import static testdata.Urls.ADMIN_GOP_LEADS;
-import static testdata.Urls.BASE_ADMIN_URL;
+import static testdata.Urls.*;
 
 public class LeadsAdmin extends BaseElement {
 
@@ -29,6 +27,7 @@ public class LeadsAdmin extends BaseElement {
     }
 
     public LeadsAdmin loginAdmin() {
+        LOGGER.info("Login Admin page");
         sendKeys(login, "Behat");
         sendKeys(password, "123456");
         click(btnLogin);
@@ -36,16 +35,19 @@ public class LeadsAdmin extends BaseElement {
     }
 
     public LeadsAdmin navigateToGopRequestTab() {
+        LOGGER.info("Navigate to the GOP Request tab");
         webDriver.navigate().to(ADMIN_GOP_LEADS);
         return this;
     }
 
     public LeadsAdmin navigateToBookingRequestTab() {
+        LOGGER.info("Navigate to the Booking Request tab");
         webDriver.navigate().to(ADMIN_BOOKING_LEADS);
         return this;
     }
 
     public LeadsAdmin checkSavedLead(String userName) {
+        LOGGER.info("Check if Lead is created");
         leads.stream().filter(lead -> lead.getText().contains(userName))
                 .findFirst()
                 .orElseThrow(() -> new AssertionError("Lead isn't created"));

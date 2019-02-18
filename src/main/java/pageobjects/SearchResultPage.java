@@ -13,12 +13,12 @@ public class SearchResultPage extends BaseElement {
     private List<WebElement> searchResults;
 
     private int getSearchResults() {
-        LOGGER.info("Check the Search results displaying on the \"Search Result\" page");
+        LOGGER.info("Check if the Search results are displaying on the \"Search Result\" page");
         return searchResults.size();
     }
 
     public SearchResultPage verifyResults() {
-        LOGGER.info("Verify Search results on the \"Search Result\" page");
+        LOGGER.info("Verify if the Search results are displayed on the \"Search Result\" page");
         assertTrue(getSearchResults() != 0, "No results were found");
         return this;
     }
