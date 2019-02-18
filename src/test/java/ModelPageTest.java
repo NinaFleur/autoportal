@@ -37,7 +37,7 @@ public class ModelPageTest extends BaseTest {
 
     @DataProvider(name = "modelUrlProvider")
     public static Object[][] modelUrlProvider() {
-        Model model = RestApiExecutor.getInstance().getModelByIndex(0);
+        Model model = RestApiExecutor.getInstance().getModelByName("Tiago");
         String modelPageUrl = BASE_NEWCARS_PAGE + model.getBrand_path() + "/" + model.getComplect_path();
         return new Object[][]{
                 {modelPageUrl}
@@ -49,8 +49,8 @@ public class ModelPageTest extends BaseTest {
         String userName = Utils.getRandomStringWithoutNumbers(7);
         String userLocation = Utils.getRandomLocation();
 
-        modelPage.navigateTo(modelPageUrl)
-                .clickTopGopBtn()
+        modelPage.navigateTo(modelPageUrl).closeCityDetectPopup();
+        modelPage.clickTopGopBtn()
                 .fillInAndSubmit(userName, "9999999999", userLocation, "Just researching")
                 .verifyChosenModelTab(model.getFullModelName());
         new LeadsAdmin()
@@ -65,8 +65,9 @@ public class ModelPageTest extends BaseTest {
         String userName = Utils.getRandomStringWithoutNumbers(7);
         String userLocation = Utils.getRandomLocation();
 
-        modelPage.navigateTo(modelPageUrl)
-                .clickPriceListGopBtn()
+        modelPage.navigateTo(modelPageUrl).closeCityDetectPopup();
+        modelPage.closeBannerAvp();
+        modelPage.clickPriceListGopBtn()
                 .fillInAndSubmit(userName, "9999999999", userLocation, "Just researching")
                 .verifyChosenModelTab(model.getFullModelName());
         new LeadsAdmin()
@@ -81,8 +82,8 @@ public class ModelPageTest extends BaseTest {
         String userName = Utils.getRandomStringWithoutNumbers(7);
         String userLocation = Utils.getRandomLocation();
 
-        modelPage.navigateTo(modelPageUrl)
-                .clickTopBookingBtn()
+        modelPage.navigateTo(modelPageUrl).closeCityDetectPopup();
+        modelPage.clickTopBookingBtn()
                 .fillInAndSubmitBookingPopup(userLocation, userName, "test@test.com", "9999999999");
         new LeadsAdmin()
                 .navigateToAdmin()

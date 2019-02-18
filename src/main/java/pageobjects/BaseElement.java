@@ -97,6 +97,11 @@ public class BaseElement extends HtmlElement {
         webDriver.findElement(By.cssSelector(".popup_avp .popup_close")).click();
     }
 
+    public void closeCityDetectPopup() {
+        waitForVisibilityBy(By.cssSelector(".close-btn"));
+        webDriver.findElement(By.cssSelector(".close-btn")).click();
+    }
+
 //    public void  moveMouse() throws  AWTException {
 //        Robot robot = new Robot();
 //        robot.mouseMove(630, 420);

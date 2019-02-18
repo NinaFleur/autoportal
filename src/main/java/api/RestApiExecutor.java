@@ -66,7 +66,6 @@ public class RestApiExecutor extends RestApiClient {
     public void getCityArrayByIndex(int index) {
         LOGGER.info("Get City data in the array by index");
         getCitiesDocs().get(index);
-        System.out.println("This is an array with City data " + getCitiesDocs().get(index));
     }
 
     public ValidatableResponse getModelsDocsResponse() {
@@ -91,7 +90,6 @@ public class RestApiExecutor extends RestApiClient {
 
     public Model getModelByIndex(int index) {
         LOGGER.info("Get Model data in the array by index");
-        System.out.println("This is an array with Model data " + getModelsDocs().get(index));
         return getModelsDocs().get(index);
     }
 

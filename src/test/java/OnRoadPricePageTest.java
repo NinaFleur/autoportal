@@ -21,14 +21,14 @@ public class OnRoadPricePageTest extends BaseTest {
         onRoadPricePage.navigate();
     }
 
-    @Test (description = "Fill GOP form, verify if lead is created")
+    @Test(description = "Fill GOP form, verify if lead is created")
     public void createGopLeadOnroadPriceForm() {
         String userName = Utils.getRandomStringWithoutNumbers(7);
         String userLocation = Utils.getRandomLocation();
         Model model = RestApiExecutor.getInstance().getModelByIndex(0);
 
-        onRoadPricePage
-                .selectBrand(model.getBrand_name())
+        onRoadPricePage.closeCityDetectPopup();
+        onRoadPricePage.selectBrand(model.getBrand_name())
                 .selectModel(model.getComplect_name())
                 .fillInInputName(userName)
                 .fillInInputPhone("9999999999")

@@ -7,8 +7,6 @@ import pageelements.GopPopUp;
 import java.util.ArrayList;
 import java.util.List;
 
-import static testdata.Urls.BRAND_PAGE;
-
 public class BrandPage extends BaseElement {
 
     private GopPopUp gopPopUp;
@@ -19,9 +17,10 @@ public class BrandPage extends BaseElement {
     @FindBy(xpath = ".//*[@id='content']//a[@class='btn-border-red btn-block model-list__btn']")
     private List<WebElement> btnBrandGop;
 
-    public void navigateToBrandPage() {
+    public BrandPage navigateTo(String url) {
         LOGGER.info("Navigate to the Brand page");
-        webDriver.navigate().to(BRAND_PAGE);
+        webDriver.navigate().to(url);
+        return this;
     }
 
     private List<String> getModelTitles() {

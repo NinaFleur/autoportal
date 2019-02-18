@@ -2,7 +2,7 @@ package testdata;
 
 public class Urls {
 
-    public static final String BASE_ADMIN_URL = "https://autoportal.com/admin";
+    public static final String BASE_ADMIN_URL = "https://autoportal.com/admin/";
 
 
     public static final String ADMIN_GOP_LEADS = BASE_ADMIN_URL + "leads/request/newcars/";

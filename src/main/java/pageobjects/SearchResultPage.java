@@ -18,7 +18,7 @@ public class SearchResultPage extends BaseElement {
     }
 
     public SearchResultPage verifyResults() {
-        LOGGER.info("Verify if the Search results are displayed on the \"Search Result\" page");
+        LOGGER.info("Verify the Search results on the \"Search Result\" page");
         assertTrue(getSearchResults() != 0, "No results were found");
         return this;
     }
