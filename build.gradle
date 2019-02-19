@@ -17,11 +17,11 @@ defaultTasks 'clean', 'test'
 group 'com.autoportal.automation'
 version '1.0-SNAPSHOT'
 
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = JavaVersion.VERSION_1_8
-
 apply plugin: "io.qameta.allure"
 apply plugin: "java"
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
 
 allure {
     version = '2.4.1'
