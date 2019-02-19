@@ -1,7 +1,9 @@
 package client;
 
+import environment.EnvironmentConfigurator;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.io.File;
@@ -14,7 +16,7 @@ public class DriverFactory {
     public static final int SCRIPT_TIME_OUT_WAIT_SECONDS = 3 * 60;
     public static final int PAGE_LOAD_TIME_WAIT_SECONDS = 10 * 60;
 
-    public static DriverFactory getInstance(){
+    public static DriverFactory getInstance() {
         return instance;
     }
 
@@ -23,8 +25,11 @@ public class DriverFactory {
         @Override
         protected WebDriver initialValue() {
             WebDriver webDriver = null;
-            ClientType clientType = ClientType.GC;
+            ClientType clientType = ClientType.valueOf(EnvironmentConfigurator.getInstance().getTestClient().toUpperCase());
             switch (clientType) {
+                case FF:
+                    webDriver = startFirefoxDriver();
+                    break;
                 case GC:
                     webDriver = startChromeDriver();
                     break;
@@ -43,13 +48,20 @@ public class DriverFactory {
             System.setProperty("webdriver.chrome.driver", chromeDriverPath);
             return new ChromeDriver();
         }
+
+        public WebDriver startFirefoxDriver() {
+            String geckoDriverPath = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "geckodriver";
+            DesiredCapabilities desiredCapabilities = DesiredCapabilities.firefox();
+            System.setProperty("webdriver.gecko.driver", geckoDriverPath);
+            return new FirefoxDriver();
+        }
     };
 
-    public WebDriver getDriver(){
+    public WebDriver getDriver() {
         return driver.get();
     }
 
-    public void closeWebDriver(){
+    public void closeWebDriver() {
         driver.get().quit();
         driver.remove();
     }

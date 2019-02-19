@@ -1,6 +1,7 @@
 package pageobjects;
 
 import client.DriverFactory;
+import environment.EnvironmentConfigurator;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -18,12 +19,12 @@ import java.util.NoSuchElementException;
 
 public class BaseElement extends HtmlElement {
 
+    public static final String MY_SITE_URL = EnvironmentConfigurator.getInstance().getMySiteUrl();
+//    public static final String MY_SITE_URL_WITH_BASE_AUTH = addBasicAuthToSiteUrl(EnvironmentConfigurator.getInstance().getMySiteUrl());
+
     protected static final Logger LOGGER = LoggerUtil.getInstance();
-
     protected WebDriver webDriver = DriverFactory.getInstance().getDriver();
-
     private WebDriverWait webDriverWait = new WebDriverWait(webDriver, 20);
-
     public BaseElement() {
         HtmlElementLoader.populatePageObject(this, webDriver);
     }

@@ -1,3 +1,5 @@
+import groovy.transform.Field
+
 buildscript {
     repositories {
         maven {
@@ -9,23 +11,23 @@ buildscript {
     }
 }
 
+@Field systemPropertySet
+
+defaultTasks 'clean', 'test'
+group 'com.autoportal.automation'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
 apply plugin: "io.qameta.allure"
+apply plugin: "java"
 
 allure {
     version = '2.4.1'
     autoconfigure = true
 }
 
-apply plugin: "java"
-
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = JavaVersion.VERSION_1_8
-
-defaultTasks 'clean', 'test'
-
-
-group 'com.autoportal.automation'
-version '1.0-SNAPSHOT'
 
 task wrapper(type: Wrapper) {
     gradleVersion = '4.3'
@@ -47,6 +49,12 @@ dependencies {
     compile 'org.grails:grails-core:2.4.4'
 }
 
+task printConfig{
+    return loadConfiguration()
+}
+
+loadConfiguration()
+
 sourceSets {
     main {
         resources {
@@ -60,13 +68,13 @@ sourceSets {
     }
 }
 
-
 test {
-    ignoreFailures = true
     useTestNG() {
-        suites '/src/test/resources/suite/regression.xml'
+        useDefaultListeners = true
+        systemProperties(System.getProperties() + systemPropertySet)
+        println(System.getProperties())
+        options.suites(System.getProperty('suite'))
     }
-
     systemProperty 'allure.results.directory', 'build/allure-results'
 
     //turn off Gradle's HTML report to avoid replacing the
@@ -74,10 +82,26 @@ test {
     reports.html.enabled = false
 }
 
-test {
-    useTestNG() {
-//        outputDirectory = file("build/testngOutput")
-        useDefaultListeners = true
-        suites 'regression.xml'
-    }
+def loadConfiguration() {
+
+//    specify common system properties
+    System.setProperty('environment', hasProperty('environment') ? environment : 'production')
+    System.setProperty('client', hasProperty('client') ? client : 'gc')
+    System.setProperty('testBuild', hasProperty('testBuild') ? testBuild : 'Automation build')
+    System.setProperty('testPlan', hasProperty('testPlan') ? testPlan : 'Automation Regression Suite')
+    System.setProperty('suite', 'src/test/resources/suite/' + hasProperty('suite') ? suite : 'regression.xml.'.toString())
+//    System.setProperty('locale', hasProperty('locale') ? locale : 'de')
+
+//    specify env specific properties from config file
+    def configFile = file('config.config')
+    def configProperties = new ConfigSlurper(System.getProperty('environment')).parse(configFile.toURI().toURL())
+
+//    defines if url specified and override it
+    def envUrl = (hasProperty('url') && getProperty('url') != "" ? url : configProperties.getProperty('url'))
+    configProperties.setProperty('url', envUrl)
+
+//    magic that adds new properties w/o overriding existent ones
+    systemPropertySet = System.getProperties() + configProperties.toProperties()
+    System.setProperties(systemPropertySet)
+    return systemPropertySet
 }

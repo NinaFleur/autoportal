@@ -2,7 +2,10 @@ package client;
 
 public enum ClientType {
 
-    GC("gc");
+    GC("gc"),
+    SF("sf"),
+    FF("ff"),
+    IE("ie");
 
     private String clientName;
 
