@@ -93,7 +93,7 @@ def loadConfiguration() {
 //    System.setProperty('locale', hasProperty('locale') ? locale : 'de')
 
 //    specify env specific properties from config file
-    def configFile = file('config.config')
+    def configFile = file('config.groovy')
     def configProperties = new ConfigSlurper(System.getProperty('environment')).parse(configFile.toURI().toURL())
 
 //    defines if url specified and override it
