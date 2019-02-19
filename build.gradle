@@ -49,7 +49,7 @@ dependencies {
     compile 'org.grails:grails-core:2.4.4'
 }
 
-task printConfig{
+task printConfig {
     return loadConfiguration()
 }
 
