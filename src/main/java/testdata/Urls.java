@@ -18,6 +18,7 @@ public class Urls {
     public static final String BROCHURE_PAGE = BASE_NEWCARS_PAGE + "tata/tiago/brochures.html";
 
     public static final String ON_ROAD_PRICE_PAGE = "https://autoportal.com/onroadprice.html";
-
     public static final String GOP_RESULT_PAGE = BASE_NEWCARS_PAGE + "hyundai/santro/onroadprice-in-newdelhi.html";
+
+    public static final String AVP_DETAIL_PAGE = INDEX + "deals/ford/endeavour-2016-2019/22l-42-at-trend/ghaziabad";
 }

@@ -7,8 +7,10 @@
             <class name="BrandPageTest"/>
             <class name="ModelPageTest"/>
             <class name="OnRoadPricePageTest"/>
+            <class name="AvpDetailPageTest"/>
             <class name="api.ModelsApiTest"/>
             <class name="api.GetCitiesTest"/>
+            <class name="WriteReadFileTest"/>
         </classes>
     </test>
 </suite>
