@@ -39,6 +39,9 @@ public class AvpListingPage extends BaseElement {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+/*
+        waitForPageLoad(webDriver);
+*/
         click(dropdownCities);
         cities.get(index).click();
 //        пока могу только так
@@ -52,6 +55,9 @@ public class AvpListingPage extends BaseElement {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+/*
+        waitForPageLoad(webDriver);
+*/
         click(bodyType.get(index));
         return this;
     }
@@ -62,6 +68,9 @@ public class AvpListingPage extends BaseElement {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+/*
+        waitForPageLoad(webDriver);
+*/
         click(webDriver.findElements(By.cssSelector(".model-title a")).get(index));
         return new AvpDetailPage();
     }

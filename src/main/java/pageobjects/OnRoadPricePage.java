@@ -46,6 +46,7 @@ public class OnRoadPricePage extends BaseElement {
     private WebElement btnProceed;
 
     public void navigate() {
+        LOGGER.info("Navigate to the On Road Price page");
         webDriver.navigate().to(ON_ROAD_PRICE_PAGE);
     }
 

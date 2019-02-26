@@ -3,19 +3,25 @@ package pageobjects;
 import client.DriverFactory;
 import environment.EnvironmentConfigurator;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import ru.yandex.qatools.htmlelements.element.HtmlElement;
 import ru.yandex.qatools.htmlelements.loader.HtmlElementLoader;
 import utils.LoggerUtil;
 
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
+
+import static com.gargoylesoftware.htmlunit.javascript.host.geo.PositionError.TIMEOUT;
 
 public class BaseElement extends HtmlElement {
 
@@ -25,6 +31,7 @@ public class BaseElement extends HtmlElement {
     protected static final Logger LOGGER = LoggerUtil.getInstance();
     protected WebDriver webDriver = DriverFactory.getInstance().getDriver();
     private WebDriverWait webDriverWait = new WebDriverWait(webDriver, 20);
+
     public BaseElement() {
         HtmlElementLoader.populatePageObject(this, webDriver);
     }
@@ -61,7 +68,7 @@ public class BaseElement extends HtmlElement {
         }
     }
 
-    public  WebElement waitForClickable(WebElement webElement) {
+    public WebElement waitForClickable(WebElement webElement) {
         waitForVisibility(webElement);
         try {
             webDriverWait.until(ExpectedConditions.elementToBeClickable(webElement));
@@ -103,6 +110,22 @@ public class BaseElement extends HtmlElement {
         webDriver.findElement(By.cssSelector(".close-btn")).click();
     }
 
+    public String getPageTitle() {
+        return webDriver.getTitle();
+    }
+
+    //    this method doesn't work
+    public void waitForPageLoad(WebDriver webDriver) {
+        ExpectedCondition<Boolean> pageLoadCondition = new ExpectedCondition<Boolean>() {
+            public Boolean apply(WebDriver webDriver) {
+                return ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete");
+            }
+        };
+        WebDriverWait wait = new WebDriverWait(webDriver, 30);
+        wait.until(pageLoadCondition);
+    }
+}
+
 //    public void  moveMouse() throws  AWTException {
 //        Robot robot = new Robot();
 //        robot.mouseMove(630, 420);
@@ -116,7 +139,7 @@ public class BaseElement extends HtmlElement {
 //    }
 
 
-}
+
 
 
 

@@ -39,6 +39,7 @@ public class HomePage extends BaseElement {
     private WebElement btnViewDeals;
 
     public void navigate() {
+        LOGGER.info("Navigate to the Home page");
         webDriver.navigate().to(INDEX);
     }
 
@@ -53,11 +54,11 @@ public class HomePage extends BaseElement {
         return this;
     }
 
-    public DealsPage clickButtonViewDeals() {
+    public AvpListingPage clickButtonViewDeals() {
         LOGGER.info("click the \"View Deals\" button in the AVP banner");
         click(btnViewDeals);
         switchToTabByIndex(1);
-        return new DealsPage();
+        return new AvpListingPage();
     }
 
     private List<String> getHeaderLinks() {

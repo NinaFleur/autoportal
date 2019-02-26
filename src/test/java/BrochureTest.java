@@ -14,7 +14,7 @@ public class BrochureTest extends BaseTest {
     public void beforeMethodInit() {
         super.beforeMethodInit();
         brochurePage = new BrochurePage();
-        brochurePage.navigateToBrochurePage();
+        brochurePage.navigate();
     }
 
     @Test(description = "Download PDF Brochure")

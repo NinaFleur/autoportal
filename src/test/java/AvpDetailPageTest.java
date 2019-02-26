@@ -1,3 +1,5 @@
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -5,15 +7,23 @@ import pageobjects.AvpDetailPage;
 import pageobjects.HomePage;
 import utils.Utils;
 
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 public class AvpDetailPageTest extends BaseTest {
 
     private HomePage homePage;
+    private WebDriver webDriver;
+    private AvpDetailPage avpDetailPage;
 
     @Override
     @BeforeMethod
     public void beforeMethodInit() {
         super.beforeMethodInit();
         homePage = new HomePage();
+        avpDetailPage = new AvpDetailPage();
         homePage.navigate();
     }
 

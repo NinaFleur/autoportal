@@ -31,7 +31,6 @@ public class HomePageTest extends BaseTest {
         homePage
                 .clickButtonViewDeals()
                 .checkBtnRequestCallBack();
-
     }
 
     @Test(description = "Verify the title in the Find Car form")
@@ -44,10 +43,17 @@ public class HomePageTest extends BaseTest {
 
     @Test(description = "Fill in Search query input, verify the results")
     public void verifySearchResults() {
+        homePage.closeCityDetectPopup();
         homePage
                 .searchForQuery("Tata");
         new SearchResultPage()
                 .verifyResults();
+    }
+
+    @Test
+    public void createFileWithData() {
+        homePage.closeCityDetectPopup();
+        homePage.getPageTitle();
     }
 
     @Override

@@ -78,6 +78,9 @@ public class AvpDetailPage extends BaseElement {
             e.printStackTrace();
         }
         switchToTabByIndex(2);
+/*
+        waitForPageLoad(webDriver);
+*/
         click(webDriver.findElements(By.cssSelector(".color-list .item")).get(index));
         return this;
     }
@@ -88,6 +91,9 @@ public class AvpDetailPage extends BaseElement {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+/*
+        waitForPageLoad(webDriver);
+*/
         switchToTabByIndex(2);
         click(btnViewPriceBreakup);
         return this;

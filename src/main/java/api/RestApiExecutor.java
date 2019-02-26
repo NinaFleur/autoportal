@@ -16,6 +16,7 @@ import java.util.List;
 
 import static api.ApiEndpoints.AP_CAR_MODELS;
 import static api.ApiEndpoints.AP_CITIES;
+import static api.ApiEndpoints.LEADS_COUNT;
 
 public class RestApiExecutor extends RestApiClient {
 
@@ -104,6 +105,11 @@ public class RestApiExecutor extends RestApiClient {
             }
         }
         return modelDoc;
+    }
+
+    public ValidatableResponse getLeadsCount() {
+        LOGGER.info("Hit the Leads Count API");
+        return executeGetRequest(LEADS_COUNT);
     }
 
 
