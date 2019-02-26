@@ -11,27 +11,24 @@ buildscript {
     }
 }
 
-@Field systemPropertySet
+apply plugin: "io.qameta.allure"
 
-defaultTasks 'clean', 'test'
+allure {
+    autoconfigure = true
+    version = '2.4.1'
+}
+
 group 'com.autoportal.automation'
 version '1.0-SNAPSHOT'
 
-apply plugin: "io.qameta.allure"
 apply plugin: "java"
+
+@Field systemPropertySet
 
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
-allure {
-    version = '2.4.1'
-    autoconfigure = true
-}
-
-
-task wrapper(type: Wrapper) {
-    gradleVersion = '4.3'
-}
+defaultTasks 'clean', 'test'
 
 repositories {
     mavenCentral()
@@ -47,6 +44,10 @@ dependencies {
     compile 'commons-lang:commons-lang:2.6'
     compile 'io.qameta.allure:allure-testng:2.0-BETA21'
     compile 'org.grails:grails-core:2.4.4'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.3'
 }
 
 task printConfig {
@@ -89,7 +90,7 @@ def loadConfiguration() {
     System.setProperty('client', hasProperty('client') ? client : 'gc')
     System.setProperty('testBuild', hasProperty('testBuild') ? testBuild : 'Automation build')
     System.setProperty('testPlan', hasProperty('testPlan') ? testPlan : 'Automation Regression Suite')
-    System.setProperty('suite', 'src/test/resources/suite/' + hasProperty('suite') ? suite : 'regression.xml.'.toString())
+    System.setProperty('suite', 'src/test/resources/suite/' + (hasProperty('suite') ? suite : 'regression.xml.').toString())
 //    System.setProperty('locale', hasProperty('locale') ? locale : 'de')
 
 //    specify env specific properties from config file
