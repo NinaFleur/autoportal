@@ -6,7 +6,6 @@ import pageobjects.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
 import static utils.Utils.storePageTitlesInFile;
 
 public class WriteReadFileTest extends BaseTest {
@@ -30,7 +29,6 @@ public class WriteReadFileTest extends BaseTest {
 
     @Test(description = "Get 5 page titles and save them to the file.txt")
     public void getPageTitles() {
-        LOGGER.info("Collecting titles of five pages.");
         List<String> pageTitles = new ArrayList<>();
         homePage.navigate();
         pageTitles.add("Home Page title is: " + homePage.getPageTitle());

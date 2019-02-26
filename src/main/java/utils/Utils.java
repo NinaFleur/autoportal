@@ -45,11 +45,14 @@ public class Utils {
     public static void storePageTitlesInFile(String pageTitles) {
         LOGGER.info("Create file.txt and write data into it");
         String fileName = "PageTitles.txt";
+
         try {
             File file = new File("src/test/resources/" + fileName);
-            if (!file.exists()) {
-                file.createNewFile();
+            if (file.exists()) {
+                file.delete();
             }
+            else file.createNewFile();
+            file.createNewFile();
             FileWriter fw = new FileWriter(file.getAbsoluteFile());
             BufferedWriter bw = new BufferedWriter(fw);
             bw.write(pageTitles);
