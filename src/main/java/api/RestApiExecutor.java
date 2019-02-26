@@ -5,6 +5,7 @@ import buisnessobjects.City;
 import buisnessobjects.Model;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
+import io.qameta.allure.Step;
 import io.restassured.response.ValidatableResponse;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -69,8 +70,9 @@ public class RestApiExecutor extends RestApiClient {
         getCitiesDocs().get(index);
     }
 
+    @Step("Execute GET request for the ALL_MODELS API")
     public ValidatableResponse getModelsDocsResponse() {
-        LOGGER.info("Hit the ALL_MODELS API");
+        LOGGER.info("Execute GET request for the ALL_MODELS API");
         return executeGetRequest(AP_CAR_MODELS);
     }
 
@@ -89,8 +91,9 @@ public class RestApiExecutor extends RestApiClient {
         return docs;
     }
 
+    @Step("Get Model data from the array by index")
     public Model getModelByIndex(int index) {
-        LOGGER.info("Get Model data in the array by index");
+        LOGGER.info("Get Model data from the array by index");
         return getModelsDocs().get(index);
     }
 
