@@ -1,8 +1,7 @@
-/*
 grid {
     isUsed = true
-    seleniumHub = ''
-}*/
+    seleniumHub = 'http://192.168.31.244:4444/wd/hub'
+}
 
 
 //cross browser testing
