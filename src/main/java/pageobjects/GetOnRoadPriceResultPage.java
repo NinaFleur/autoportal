@@ -23,7 +23,7 @@ public class GetOnRoadPriceResultPage extends BaseElement {
         webDriver.navigate().to(GOP_RESULT_PAGE);
     }
 
-    @Step("Verify chosen Model tab")
+    @Step("Verify chosen Model tab on the GORP")
     public GetOnRoadPriceResultPage verifyChosenModelTab(String fullModelName) {
         LOGGER.info("Verify the Model tab title on the GORP");
         waitForVisibilityBy(tab);

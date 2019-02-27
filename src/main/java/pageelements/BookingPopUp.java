@@ -1,5 +1,6 @@
 package pageelements;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -47,6 +48,7 @@ public class BookingPopUp extends BaseElement {
     @FindBy(css = "[data-popup-container='data-model-booking-popup'] [type='submit']")
     private WebElement popupBookingBtnProceed;
 
+    @Step("Select the User location in the Booking pop-up")
     private void fillInInputLocation(String userLocation) {
         LOGGER.info("Select the User location in the Booking pop-up");
         sendKeys(popupBookingInputLocation, userLocation);
@@ -59,38 +61,45 @@ public class BookingPopUp extends BaseElement {
         }
     }
 
+    @Step("Select the Model Variant in the Booking pop-up")
     private void selectVariant() {
         LOGGER.info("Select the Model Variant in the Booking pop-up");
         click(popupBookingVariant);
         click(popupBookingVariantOptions.get(5));
     }
 
+    @Step("Fill the User name in the Booking pop-up")
     private void fillInInputName(String userName) {
         LOGGER.info("Fill the User name in the Booking pop-up");
         sendKeys(popupBookingInputName, userName);
     }
 
+    @Step("Fill the User email in the Booking pop-up")
     private void fillInInputEmail(String userEmail) {
         LOGGER.info("Fill the User email in the Booking pop-up");
         sendKeys(popupBookingInputEmail, userEmail);
     }
 
+    @Step("Fill the User phone in the Booking pop-up")
     private void fillInInputPhone(String userPhone) {
         LOGGER.info("Fill the User phone in the Booking pop-up");
         sendKeys(popupBookingInputPhone, userPhone);
     }
 
+    @Step("Select the Dealer in the Booking pop-up")
     private void selectDealer() {
         LOGGER.info("Select the Dealer in the Booking pop-up");
         click(popupBookingDealer);
         click(popupBookingDealerOptions.get(1));
     }
 
+    @Step("Click the Proceed btn in the Booking pop-up")
     private void clickBtnProceed() {
         LOGGER.info("Click the Proceed btn in the Booking pop-up");
         click(popupBookingBtnProceed);
     }
 
+    @Step("Fill in the Booking pop-up with the User data, click the Proceed btn ")
     public void fillInAndSubmitBookingPopup(String userLocation, String userName, String userEmail, String userPhone) {
         LOGGER.info("Fill in the Booking pop-up with the User data, click the Proceed btn ");
         fillInInputLocation(userLocation);

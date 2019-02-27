@@ -1,5 +1,6 @@
 package pageobjects;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -65,13 +66,16 @@ public class AvpDetailPage extends BaseElement {
     @FindBy(css = "[id='content']")
     private WebElement popupRazorPay;
 
+    @Step("Navigate to the AVP Detail page")
     public AvpDetailPage navigate() {
         LOGGER.info("Navigate to the AVP Detail page");
         webDriver.navigate().to(AVP_DETAIL_PAGE);
         return this;
     }
 
+    @Step("Select color by index")
     public AvpDetailPage selectColorByIndex(int index) {
+        LOGGER.info("Select color by index");
         try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {
@@ -85,7 +89,9 @@ public class AvpDetailPage extends BaseElement {
         return this;
     }
 
+    @Step("Click on the \"View Price Breakup\" button")
     public AvpDetailPage clickViewPriceBreakup() {
+        LOGGER.info("Click View Price Breakup button");
         try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {
@@ -99,12 +105,16 @@ public class AvpDetailPage extends BaseElement {
         return this;
     }
 
+    @Step("Change insurance type")
     public AvpDetailPage changeInsuranceType() {
+        LOGGER.info("Change insurance type");
         click(webDriver.findElement(By.cssSelector(".circle[data-state-value='1']")));
         return this;
     }
 
+    @Step("Click on the \"Change Car\" button")
     public void clickBtnChangeCar() {
+        LOGGER.info("Click on the \"Change Car\" button");
         try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {
@@ -114,21 +124,28 @@ public class AvpDetailPage extends BaseElement {
         btnChangeCar.click();
     }
 
+    @Step("Select AVP brand")
     public void selectBrand(Integer index) {
+        LOGGER.info("Select AVP brand");
         selectBrand.click();
         brand.get(index).click();
     }
 
+    @Step("Select AVP model")
     public void selectModel(Integer index) {
+        LOGGER.info("Select AVP model");
         selectModel.click();
         model.get(index).click();
     }
 
+    @Step("Select AVP variant")
     public void selectVariant(Integer index) {
+        LOGGER.info("Select AVP variant");
         selectVariant.click();
         variant.get(index).click();
     }
 
+    @Step("Select color by index, click the \"View Price Breakup\" button and change Insurance type")
     public AvpDetailPage changeColorAndInsuranceType() {
         LOGGER.info("Select color by Index, click View Price BreakUp and change Insurance type");
         selectColorByIndex(3);
@@ -138,7 +155,9 @@ public class AvpDetailPage extends BaseElement {
     }
 
 
+    @Step("Change AVP model by clicking the \"Change Car\" button and submitting the form")
     public AvpDetailPage changeAnotherCar() {
+        LOGGER.info("Change AVP model by clicking the \"Change Car\" button and submitting the form");
         clickBtnChangeCar();
         selectBrand(1);
         selectModel(1);
@@ -147,7 +166,9 @@ public class AvpDetailPage extends BaseElement {
         return new AvpDetailPage();
     }
 
+    @Step("Open the Pre-booking pop-up, fill in the form, submit it")
     public AvpDetailPage fillAndSubmitPrebooking(String userName, String userEmail, String userPhone) {
+        LOGGER.info("Open Pre-booking pop-up, fill in the form, submit it");
         try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {

@@ -37,12 +37,14 @@ public class ModelPage extends BaseElement {
     @FindBy(css = ".gallery-photos .first img")
     private WebElement mainImg;
 
+    @Step("Navigate to the Model page")
     public ModelPage navigateTo(String url) {
         LOGGER.info("Navigate to the Model page");
         webDriver.navigate().to(url);
         return this;
     }
 
+    @Step("Get the Model title from UI")
     public String getModelName() {
         LOGGER.info("Get the Model title from UI");
         return modelTitle.getText();
@@ -55,37 +57,42 @@ public class ModelPage extends BaseElement {
         assertTrue(getMainModelImageUrl().contains(model.getImage()), "Image url is not correct");
     }
 
+    @Step("Click Top GOP button")
     public GopPopUp clickTopGopBtn() {
         LOGGER.info("Click Top GOP button");
         click(btnTopGop);
         return gopPopUp;
     }
 
+    @Step("Click first GOP btn in the Price List block")
     public GopPopUp clickPriceListGopBtn() {
         LOGGER.info("Click first GOP btn in the Price List block");
         click(priceListFirstVariant);
         return gopPopUp;
     }
 
+    @Step("Click Top Booking btn")
     public BookingPopUp clickTopBookingBtn() {
         LOGGER.info("Click Top Booking btn");
         click(btnTopBooking);
         return bookingPopUp;
     }
 
+    @Step("Get the min model price")
     public String getPriceMin() {
         LOGGER.info("Get the min model price");
         return priceMin.getText();
     }
 
+    @Step("Get the max model price")
     public String getPriceMax() {
         LOGGER.info("Get the max model price");
         return priceMax.getText();
     }
 
+    @Step("Get the main image URL")
     public String getMainModelImageUrl() {
         LOGGER.info("Get the main image URL");
         return mainImg.getAttribute("src");
     }
-
 }

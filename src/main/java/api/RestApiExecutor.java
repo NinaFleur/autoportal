@@ -15,9 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static api.ApiEndpoints.AP_CAR_MODELS;
-import static api.ApiEndpoints.AP_CITIES;
-import static api.ApiEndpoints.LEADS_COUNT;
+import static api.ApiEndpoints.*;
 
 public class RestApiExecutor extends RestApiClient {
 
@@ -25,13 +23,14 @@ public class RestApiExecutor extends RestApiClient {
         return new RestApiExecutor();
     }
 
+    @Step("Execute GET request to the All_CITIES API")
     public ValidatableResponse getCitiesDocsResponse() {
-        LOGGER.info("Hit the All_CITIES API");
+        LOGGER.info("Execute GET request to the All_CITIES API");
         return executeGetRequest(AP_CITIES);
     }
 
     public List<City> getCitiesDocs() {
-        LOGGER.info("Hit the All_CITIES API, get all the data in the \"docs\" array");
+        LOGGER.info("Get all the data in the \"docs\" array from the All_CITIES API");
         String apiEndpoint = AP_CITIES;
         ValidatableResponse response = executeGetRequest(apiEndpoint).statusCode(200);
         List<City> docs = new ArrayList<>();
@@ -65,8 +64,9 @@ public class RestApiExecutor extends RestApiClient {
 //        return docs;
     }
 
+    @Step("Get City data from the array by index")
     public void getCityArrayByIndex(int index) {
-        LOGGER.info("Get City data in the array by index");
+        LOGGER.info("Get City data from the array by index");
         getCitiesDocs().get(index);
     }
 
@@ -77,7 +77,7 @@ public class RestApiExecutor extends RestApiClient {
     }
 
     public List<Model> getModelsDocs() {
-        LOGGER.info("Hit the ALL_MODELS API, get all the data in the \"docs\" array");
+        LOGGER.info("Get all the data in the \"docs\" array from the ALL_MODELS API");
         String apiEndpoint = AP_CAR_MODELS;
         ValidatableResponse response = executeGetRequest(apiEndpoint).statusCode(200);
         List<Model> docs = new ArrayList<>();
@@ -97,6 +97,7 @@ public class RestApiExecutor extends RestApiClient {
         return getModelsDocs().get(index);
     }
 
+    @Step("Get the Model data from the array by name")
     public Model getModelByName(String name) {
         LOGGER.info("Get the Model data in an array by name");
         List<Model> models = getModelsDocs();
@@ -110,12 +111,11 @@ public class RestApiExecutor extends RestApiClient {
         return modelDoc;
     }
 
+    @Step("Execute GET request to the Leads Count API")
     public ValidatableResponse getLeadsCount() {
         LOGGER.info("Hit the Leads Count API");
         return executeGetRequest(LEADS_COUNT);
     }
-
-
 }
 
 

@@ -1,5 +1,6 @@
 package pageobjects;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -27,13 +28,16 @@ public class AvpListingPage extends BaseElement {
     @FindBy(css = "[data-trackevent-action='Car Types'] + .item-body .filters-list li")
     private List<WebElement> bodyType;
 
+    @Step("Check if the \"Request Call Back\" buttons are displayed")
     public AvpListingPage checkBtnRequestCallBack() {
         LOGGER.info("check if the \"Request Call Back\" buttons are displayed");
         assertTrue(btnRequestCallBack.get(0).isDisplayed(), "Request CallBack buttons are not displayed");
         return this;
     }
 
+    @Step("Select City by index from the \"Cities\" drop-down")
     public AvpListingPage selectCity(int index) {
+        LOGGER.info("Select City from the Cities drop-down");
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
@@ -49,7 +53,9 @@ public class AvpListingPage extends BaseElement {
         return this;
     }
 
+    @Step("Select body type by index from the \"Car Types\" drop-down")
     public AvpListingPage selectBodyType(int index) {
+        LOGGER.info("Select body type by index from the \"Car Types\" drop-down");
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
@@ -62,7 +68,9 @@ public class AvpListingPage extends BaseElement {
         return this;
     }
 
+    @Step("Click AVP model by index")
     public AvpDetailPage clickAvpModel(int index) {
+        LOGGER.info("Click AVP model by index");
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
@@ -75,6 +83,7 @@ public class AvpListingPage extends BaseElement {
         return new AvpDetailPage();
     }
 
+    @Step("Select City,  body type, click AVP model and navigate to the AVP Detail Page")
     public AvpDetailPage chooseAvpModelWithFilter() {
         LOGGER.info("Select City,  body type, click AVP model and navigate to the AVP Detail Page");
         selectCity(2);

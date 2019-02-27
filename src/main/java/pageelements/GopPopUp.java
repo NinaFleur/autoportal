@@ -1,5 +1,6 @@
 package pageelements;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -38,16 +39,19 @@ public class GopPopUp extends BaseElement {
     @FindBy(css = ".form-lead .red_but.cell-sm")
     private WebElement popupGopBtnProceed;
 
+    @Step("Fill the User name in the GOP pop-up")
     private void fillInInputName(String userName) {
         LOGGER.info("Fill the User name in the GOP pop-up");
         sendKeys(popupGopInputName, userName);
     }
 
+    @Step("Fill the User phone in the GOP pop-up")
     private void fillInInputPhone(String userPhone) {
         LOGGER.info("Fill the User phone in the GOP pop-up");
         sendKeys(popupGopInputPhone, userPhone);
     }
 
+    @Step("Select the User location in the GOP pop-up")
     private void fillInInputLocation(String userLocation) {
         LOGGER.info("Select the User location in the GOP pop-up");
         sendKeys(popupGopInputLocation, userLocation);
@@ -60,6 +64,7 @@ public class GopPopUp extends BaseElement {
         }
     }
 
+    @Step("Select the Purchase period in the GOP pop-up")
     private void selectPurchasePeriod(String purchaseDate) {
         LOGGER.info("Select the Purchase period in the GOP pop-up");
         click(popupGopPurchasePeriodDropDown);
@@ -71,11 +76,13 @@ public class GopPopUp extends BaseElement {
         }
     }
 
+    @Step("Click the Proceed btn in the GOP pop-up")
     private void clickBtnProceed() {
         LOGGER.info("Click the Proceed btn in the GOP pop-up");
         click(popupGopBtnProceed);
     }
 
+    @Step("Fill in the GOP pop-upp with the User data, click the Proceed btn")
     public GetOnRoadPriceResultPage fillInAndSubmit(String userName, String userPhone, String userLocation, String purchaseDate) {
         LOGGER.info("Fill in the GOP pop-upp with the User data, click the Proceed btn");
         fillInInputName(userName);

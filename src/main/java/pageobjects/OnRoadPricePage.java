@@ -1,5 +1,6 @@
 package pageobjects;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -45,11 +46,13 @@ public class OnRoadPricePage extends BaseElement {
     @FindBy(css = ".form-lead .red_but.cell-sm")
     private WebElement btnProceed;
 
+    @Step("Navigate to the On Road Price page")
     public void navigate() {
         LOGGER.info("Navigate to the On Road Price page");
         webDriver.navigate().to(ON_ROAD_PRICE_PAGE);
     }
 
+    @Step("Select Brand on the OnRoadPrice page")
     public OnRoadPricePage selectBrand(String brandName) {
         LOGGER.info("Select Brand on the OnRoadPrice page");
         click(selectBrandDropDown);
@@ -62,6 +65,7 @@ public class OnRoadPricePage extends BaseElement {
         return this;
     }
 
+    @Step("Select Model on the OnRoadPrice page")
     public OnRoadPricePage selectModel(String modelName) {
         LOGGER.info("Select Model on the OnRoadPrice page");
         click(selectModelDropDown);
@@ -74,18 +78,21 @@ public class OnRoadPricePage extends BaseElement {
         return this;
     }
 
+    @Step("Fill the User name in the GOP form")
     public OnRoadPricePage fillInInputName(String userName) {
         LOGGER.info("Fill the User name in the GOP form");
         sendKeys(inputName, userName);
         return this;
     }
 
+    @Step("Fill the User phone in the GOP form")
     public OnRoadPricePage fillInInputPhone(String userPhone) {
         LOGGER.info("Fill the User phone in the GOP form");
         sendKeys(inputPhone, userPhone);
         return this;
     }
 
+    @Step("Select the User Location from autosuggest")
     public OnRoadPricePage fillInInputLocation(String userLocation) {
         LOGGER.info("Select the User Location from autosuggest");
         sendKeys(inputLocation, userLocation);
@@ -99,6 +106,7 @@ public class OnRoadPricePage extends BaseElement {
         return this;
     }
 
+    @Step("Select Purchase period from the drop-down")
     public OnRoadPricePage selectPurchasePeriod(String purchaseDate) {
         LOGGER.info("Select Purchase period from the drop-down");
         click(purchasePeriodDropDown);
@@ -111,6 +119,7 @@ public class OnRoadPricePage extends BaseElement {
         return this;
     }
 
+    @Step("Click the Proceed btn")
     public GetOnRoadPriceResultPage clickBtnProceed() {
         LOGGER.info("Click the Proceed btn");
         click(btnProceed);
