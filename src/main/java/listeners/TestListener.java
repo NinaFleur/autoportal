@@ -4,6 +4,7 @@ import client.DriverFactory;
 import io.qameta.allure.Attachment;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
@@ -27,18 +28,18 @@ public class TestListener implements ITestListener {
 
     @Override
     public void onTestFailure(ITestResult result) {
-        /*try {
+        try {
             takeScreenShot();
         } catch (IOException e) {
             e.printStackTrace();
-        }*/
+        }
     }
 
-   /* @Attachment(value = "Page screenshot", type = "image/png")
+    @Attachment(value = "Page screenshot", type = "image/png")
     private byte[] takeScreenShot() throws IOException {
         LOGGER.info(String.format("Taking screenshot due to fail"));
-        return DriverFactory.getInstance().getDriver().getScreenshotAs(OutputType.BYTES);
-    }*/
+        return ((TakesScreenshot) DriverFactory.getInstance().getDriver()).getScreenshotAs(OutputType.BYTES);
+    }
 
     @Override
     public void onTestSkipped(ITestResult result) {
